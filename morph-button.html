@@ -1,6 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<!--<link rel="import" href="../polymer/lib/elements/dom-if.html">-->
-<!--<link rel="import" href="../polymer/lib/elements/dom-repeat.html">-->
+<link rel="import" href="../morph-element/morph-element.html">
 
 <!--
 `morph-button`
@@ -12,44 +11,95 @@ Button that morphs for current mobile OS
 <dom-module id="morph-button">
   <template>
     <style>
+      /* TODO: try to move these color table to other shared file */
       :host {
-        /* Shared colors
-        TODO: Move to external shared file with all colors */
-        --platform-blue-color: #007aff;
-        --platform-blue-color--background: rgba(0, 122, 255, 0.15);
+        --ios-blue-color: #007aff;
+        --ios-blue-color--background: rgba(0, 122, 255, 0.15);
 
-        --platform-red-color: #ff3b30;
-        --platform-red-color--background: rgba(255, 59, 48, 0.15);
+        --ios-red-color: #ff3b30;
+        --ios-red-color--background: rgba(255, 59, 48, 0.15);
 
-        --platform-green-color: #4cd964;
-        --platform-green-color--background: rgba(76, 217, 100, 0.15);
+        --ios-green-color: #4cd964;
+        --ios-green-color--background: rgba(76, 217, 100, 0.15);
 
-        --platform-gray-color: #8e8e93;
-        --platform-green-color--background: rgba(142, 142, 147, 0.15);
-        /* end of shared colors */
-        
-        --color: var(--platform-blue-color);
-        --active-color--background: var(--platform-blue-color--background);
+        --ios-gray-color: #8e8e93;
+        --ios-gray-color--background: rgba(142, 142, 147, 0.15);
+      }
+
+      :host {
+        --android-blue-color: #2196f3;
+        --android-blue-color--background: #0D82DF;
+
+        --android-red-color: #f44336;
+        --android-red-color--background: #E02F22;
+
+        --android-green-color: #4caf50;
+        --android-green-color--background: #389B3C;
+
+        --android-gray-color: #8e8e93;
+        --android-gray-color--background: #7A7A7F;
+      }
+      /* end of shared colors */
+
+      /* if iOS assigning colors from iOS colors table */
+      :host([platform="ios"]) {
+        --blue-color: var(--ios-blue-color);
+        --blue-color--background: var(--ios-blue-color--background);
+
+        --red-color: var(--ios-red-color);
+        --red-color--background: var(--ios-red-color--background);
+
+        --green-color: var(--ios-green-color);
+        --green-color--background: var(--ios-green-color--background);
+
+        --gray-color: var(--ios-gray-color);
+        --gray-color--background:var(--ios-gray-color--background);
+      }
+
+      /* if Android assigning colors from Android colors table */
+      :host([platform="android"]) {
+        --blue-color: var(--android-blue-color);
+        --blue-color--background: var(--android-blue-color--background);
+
+        --red-color: var(--android-red-color);
+        --red-color--background: var(--android-red-color--background);
+
+        --green-color: var(--android-green-color);
+        --green-color--background: var(--android-green-color--background);
+
+        --gray-color: var(--android-gray-color);
+        --gray-color--background:var(--android-gray-color--background);
+
+        --android-raised-1-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        --android-raised-2-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      }
+
+      /* Shared color configuration */
+      :host {
+        --color: var(--blue-color);
+        --active-color--background: var(--blue-color--background);
         --filled-text-color: white;
 
         --font-size: 14px;
       }
 
+      /* Prebuilt colors */
       :host([color="red"]) {
-        --color: var(--platform-red-color);
-        --active-color--background: var(--platform-red-color--background);
+        --color: var(--red-color);
+        --active-color--background: var(--red-color--background);
       }
 
       :host([color="green"]) {
-        --color: var(--platform-green-color);
-        --active-color--background: var(--platform-green-color--background);
+        --color: var(--green-color);
+        --active-color--background: var(--green-color--background);
       }
 
       :host([color="gray"]) {
-        --color: var(--platform-gray-color);
-        --active-color--background: var(--platform-gray-color--background);
+        --color: var(--gray-color);
+        --active-color--background: var(--gray-color--background);
       }
 
+      /* Shared styles between platforms */
       :host {
         appearance: none;
         background: none;
@@ -70,6 +120,7 @@ Button that morphs for current mobile OS
         font-family: inherit;
       }
 
+/* iOS only styles */
       :host([platform="ios"]) {
         border-radius: 5px;
         border: 1px solid var(--color);
@@ -78,18 +129,6 @@ Button that morphs for current mobile OS
         line-height: 27px;
         padding: 0 10px;
         position: relative;
-      }
-
-      :host([platform="android"]) {
-        border-radius: 2px;
-        height: 36px;
-        line-height: 36px;
-        min-width: 64px;
-        padding: 0 10px;
-        padding: 0 8px;
-        text-transform: uppercase;
-        transform: translate3d(0,0,0);
-        transition: 300ms;
       }
 
       :host([platform="ios"]:active) {
@@ -115,6 +154,46 @@ Button that morphs for current mobile OS
         background: var(--color);
         color: var(--filled-text-color);
         border-color: transparent;
+      }
+
+/* Android only styles */
+      :host([platform="android"]) {
+        border-radius: 2px;
+        height: 36px;
+        line-height: 36px;
+        min-width: 64px;
+        padding: 0 10px;
+        padding: 0 8px;
+        text-transform: uppercase;
+        transform: translate3d(0,0,0);
+        transition: 300ms;
+      }
+
+      :host([platform="android"]:active) {
+        background: rgba(0, 0, 0, 0.1);
+      } 
+
+      :host([platform="android"][big]) {
+        height: 48px;
+        line-height: 48px;
+        border-radius: 3px;
+      }
+
+      :host([platform="android"][filled]) {
+        background-color: var(--color);
+        color: var(--filled-text-color);
+      }
+      
+      :host([platform="android"][filled]:active) {
+        background: var(--active-color--background);
+      }
+
+      :host([platform="android"][raised]) {
+        box-shadow: var(--android-raised-1-shadow);
+      }
+
+      :host([platform="android"][raised]:active) {
+        box-shadow: var(--android-raised-2-shadow);
       }
       
     </style>
@@ -163,6 +242,11 @@ Button that morphs for current mobile OS
           },
 
           /* Android specific */
+          raised: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          }
         };
       }
     }
