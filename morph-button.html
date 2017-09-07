@@ -72,6 +72,22 @@ Button that morphs for current mobile OS
         background: var(--element-color);
         color: var(--text-color);
       }
+
+      :host([platform="ios"][rounded]) {
+        border-radius: 27px;
+      }
+
+      :host([platform="ios"][big]) {
+        font-size: 17px;
+        height: 44px;
+        line-height: 42px;
+      }
+
+      :host([platform="ios"][filled]) {
+        background: var(--element-color);
+        color: var(--text-color);
+        border-color: transparent;
+      }
       
     </style>
 
