@@ -12,64 +12,34 @@ Button that morphs for current mobile OS
 <dom-module id="morph-button">
   <template>
     <style include="morph-shared-styles">
-      /* TODO: try to move these color table to other shared file */
-      :host {
-        --ios-blue-color: #007aff;
-        --ios-blue-color--background: rgba(0, 122, 255, 0.15);
-
-        --ios-red-color: #ff3b30;
-        --ios-red-color--background: rgba(255, 59, 48, 0.15);
-
-        --ios-green-color: #4cd964;
-        --ios-green-color--background: rgba(76, 217, 100, 0.15);
-
-        --ios-gray-color: #8e8e93;
-        --ios-gray-color--background: rgba(142, 142, 147, 0.15);
-      }
-
-      :host {
-        --android-blue-color: #2196f3;
-        --android-blue-color--background: #0D82DF;
-
-        --android-red-color: #f44336;
-        --android-red-color--background: #E02F22;
-
-        --android-green-color: #4caf50;
-        --android-green-color--background: #389B3C;
-
-        --android-gray-color: #8e8e93;
-        --android-gray-color--background: #7A7A7F;
-      }
-      /* end of shared colors */
-
       /* if iOS assigning colors from iOS colors table */
       :host([platform="ios"]) {
-        --blue-color: var(--ios-blue-color);
-        --blue-color--background: var(--ios-blue-color--background);
+        --blue-color: var(--polymorph-ios-blue-color);
+        --blue-color--background: var(--polymorph-ios-blue-color--background);
 
-        --red-color: var(--ios-red-color);
-        --red-color--background: var(--ios-red-color--background);
+        --red-color: var(--polymorph-ios-red-color);
+        --red-color--background: var(--polymorph-ios-red-color--background);
 
-        --green-color: var(--ios-green-color);
-        --green-color--background: var(--ios-green-color--background);
+        --green-color: var(--polymorph-ios-green-color);
+        --green-color--background: var(--polymorph-ios-green-color--background);
 
-        --gray-color: var(--ios-gray-color);
-        --gray-color--background:var(--ios-gray-color--background);
+        --gray-color: var(--polymorph-ios-gray-color);
+        --gray-color--background:var(--polymorph-ios-gray-color--background);
       }
 
       /* if Android assigning colors from Android colors table */
       :host([platform="android"]) {
-        --blue-color: var(--android-blue-color);
-        --blue-color--background: var(--android-blue-color--background);
+        --blue-color: var(--polymorph-android-blue-color);
+        --blue-color--background: var(--polymorph-android-blue-color--background);
 
-        --red-color: var(--android-red-color);
-        --red-color--background: var(--android-red-color--background);
+        --red-color: var(--polymorph-android-red-color);
+        --red-color--background: var(--polymorph-android-red-color--background);
 
-        --green-color: var(--android-green-color);
-        --green-color--background: var(--android-green-color--background);
+        --green-color: var(--polymorph-android-green-color);
+        --green-color--background: var(--polymorph-android-green-color--background);
 
-        --gray-color: var(--android-gray-color);
-        --gray-color--background:var(--android-gray-color--background);
+        --gray-color: var(--polymorph-android-gray-color);
+        --gray-color--background:var(--polymorph-android-gray-color--background);
 
         --android-raised-1-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         --android-raised-2-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
