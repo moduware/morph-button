@@ -14,7 +14,11 @@ Button that morphs for current mobile OS
     <style>
       :host {
         --platform-blue-color: #007aff;
+        --platform-blue-background: rgba(0, 122, 255, 0.15);
+        
         --element-color: var(--platform-blue-color);
+        --element-active-background: var(--platform-blue-background);
+        --text-color: white;
         --font-size: 14px;
       }
 
@@ -59,6 +63,15 @@ Button that morphs for current mobile OS
         transform: translate3d(0,0,0);
         transition: 300ms;
       }
+
+      :host([platform="ios"]:active) {
+        background: var(--element-active-background);
+      } 
+
+      :host([platform="ios"][active]) {
+        background: var(--element-color);
+        color: var(--text-color);
+      }
       
     </style>
 
@@ -73,17 +86,8 @@ Button that morphs for current mobile OS
       static get is() { return 'morph-button'; }
       static get properties() {
         return {
-          active: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
+          /* Common for both platforms */
           big: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
-          rounded: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
@@ -100,7 +104,21 @@ Button that morphs for current mobile OS
           },
           link: String,
           target: String, 
-          relation: String
+          relation: String,
+
+          /* iOS specific */
+          active: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          rounded: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+
+          /* Android specific */
         };
       }
     }
