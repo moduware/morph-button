@@ -14,11 +14,12 @@ Button that morphs for current mobile OS
     <style>
       :host {
         --platform-blue-color: #007aff;
-        --platform-blue-background: rgba(0, 122, 255, 0.15);
+        --platform-blue-color--background: rgba(0, 122, 255, 0.15);
         
-        --element-color: var(--platform-blue-color);
-        --element-active-background: var(--platform-blue-background);
-        --text-color: white;
+        --color: var(--platform-blue-color);
+        --active-color--background: var(--platform-blue-color--background);
+        --filled-text-color: white;
+        
         --font-size: 14px;
       }
 
@@ -26,7 +27,7 @@ Button that morphs for current mobile OS
         appearance: none;
         background: none;
         box-sizing: border-box;
-        color: var(--element-color);
+        color: var(--color);
         cursor: pointer;
         display: block;
         font-size: var(--font-size);
@@ -44,7 +45,7 @@ Button that morphs for current mobile OS
 
       :host([platform="ios"]) {
         border-radius: 5px;
-        border: 1px solid var(--element-color);
+        border: 1px solid var(--color);
         cursor: pointer;
         height: 29px;
         line-height: 27px;
@@ -65,12 +66,12 @@ Button that morphs for current mobile OS
       }
 
       :host([platform="ios"]:active) {
-        background: var(--element-active-background);
+        background: var(--active-color--background);
       } 
 
       :host([platform="ios"][active]) {
-        background: var(--element-color);
-        color: var(--text-color);
+        background: var(--color);
+        color: var(--filled-text-color);
       }
 
       :host([platform="ios"][rounded]) {
@@ -84,8 +85,8 @@ Button that morphs for current mobile OS
       }
 
       :host([platform="ios"][filled]) {
-        background: var(--element-color);
-        color: var(--text-color);
+        background: var(--color);
+        color: var(--filled-text-color);
         border-color: transparent;
       }
       
