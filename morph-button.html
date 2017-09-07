@@ -12,57 +12,50 @@ Button that morphs for current mobile OS
 <dom-module id="morph-button">
   <template>
     <style>
-      :host([platform="ios"]) {
-        border: 1px solid #007aff;
-        color: #007aff;
-        text-decoration: none;
-        text-align: center;
-        display: block;
-        border-radius: 5px;
-        line-height: 27px;
-        box-sizing: border-box;
+      :host {
+        --platform-blue-color: #007aff;
+        --element-color: var(--platform-blue-color);
+        --font-size: 14px;
+      }
+
+      :host {
         appearance: none;
         background: none;
-        padding: 0 10px;
-        margin: 0;
-        height: 29px;
-        white-space: nowrap;
-        position: relative;
-        overflow: hidden;
-        text-overflow:ellipsis;
-        font-size: 14px;
-        font-family: inherit;
+        box-sizing: border-box;
+        color: var(--element-color);
         cursor: pointer;
+        display: block;
+        font-size: var(--font-size);
+        margin: 0;
         outline: 0;
+        overflow: hidden;
+        text-align: center;
+        text-decoration: none;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+
+        /* We need to use system font here */
+        font-family: inherit;
+      }
+
+      :host([platform="ios"]) {
+        border-radius: 5px;
+        border: 1px solid var(--element-color);
+        cursor: pointer;
+        height: 29px;
+        line-height: 27px;
+        padding: 0 10px;
+        position: relative;
       }
 
       :host([platform="android"]) {
-        appearance: none;
-        background: none;
-        color: #007aff;
-        text-decoration: none;
-        text-align: center;
-        display: block;
         border-radius: 2px;
-        line-height: 36px;
-        box-sizing:border-box;
-        
-        padding: 0 10px;
-        margin: 0;
         height: 36px;
-        white-space: nowrap;
-        text-overflow:ellipsis;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-family: inherit;
-        cursor: pointer;
+        line-height: 36px;
         min-width: 64px;
+        padding: 0 10px;
         padding: 0 8px;
-        
-        overflow: hidden;
-        outline: 0;
-        border: none;
-
+        text-transform: uppercase;
         transform: translate3d(0,0,0);
         transition: 300ms;
       }
