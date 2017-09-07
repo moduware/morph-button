@@ -13,14 +13,41 @@ Button that morphs for current mobile OS
   <template>
     <style>
       :host {
+        /* Shared colors
+        TODO: Move to external shared file with all colors */
         --platform-blue-color: #007aff;
         --platform-blue-color--background: rgba(0, 122, 255, 0.15);
+
+        --platform-red-color: #ff3b30;
+        --platform-red-color--background: rgba(255, 59, 48, 0.15);
+
+        --platform-green-color: #4cd964;
+        --platform-green-color--background: rgba(76, 217, 100, 0.15);
+
+        --platform-gray-color: #8e8e93;
+        --platform-green-color--background: rgba(142, 142, 147, 0.15);
+        /* end of shared colors */
         
         --color: var(--platform-blue-color);
         --active-color--background: var(--platform-blue-color--background);
         --filled-text-color: white;
-        
+
         --font-size: 14px;
+      }
+
+      :host([color="red"]) {
+        --color: var(--platform-red-color);
+        --active-color--background: var(--platform-red-color--background);
+      }
+
+      :host([color="green"]) {
+        --color: var(--platform-green-color);
+        --active-color--background: var(--platform-green-color--background);
+      }
+
+      :host([color="gray"]) {
+        --color: var(--platform-gray-color);
+        --active-color--background: var(--platform-gray-color--background);
       }
 
       :host {

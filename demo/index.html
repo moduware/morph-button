@@ -15,6 +15,12 @@
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
+    <style>
+      .custom-element-color {
+        --color: #BD2C40;
+        --active-color--background: rgba(189, 44, 64, 0.15);
+      }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -31,20 +37,26 @@
           <h4>Active button</h4>
           <morph-button active>Active Button</morph-button>
 
-          <h4>Rounded button</h4>
+          <h4>Rounded buttons</h4>
           <p><morph-button rounded>Rounded Button</morph-button></p>
           <p><morph-button rounded>Rounded Button</morph-button></p>
           <p><morph-button rounded active>Rounded Active Button</morph-button></p>
 
-          <h4>Big button</h4>
+          <h4>Big buttons</h4>
           <p><morph-button big>Big Button</morph-button></p>
           <p><morph-button rounded big>Big Rounded Button</morph-button></p>
           <p><morph-button rounded active big>Big Rounded Active Button</morph-button></p>
 
-          <h4>Fill button</h4>
-          <p><morph-button filled>Fill Button</morph-button></p>
-          <p><morph-button rounded filled>Fill Rounded Button</morph-button></p>
-          <p><morph-button big filled>Fill Rounded Button</morph-button></p>
+          <h4>Filled buttons</h4>
+          <p><morph-button filled>Filled Button</morph-button></p>
+          <p><morph-button rounded filled>Filled Rounded Button</morph-button></p>
+          <p><morph-button big filled>Filled Rounded Button</morph-button></p>
+
+          <h4>Color buttons</h4>
+          <p><morph-button filled color="green">Green</morph-button></p>
+          <p><morph-button rounded filled color="red">Red</morph-button></p>
+          <p><morph-button big filled color="gray">Gray</morph-button></p>
+          <p><morph-button big filled class="custom-element-color">Custom</morph-button></p>
         </template>
       </demo-snippet>
     </div>
