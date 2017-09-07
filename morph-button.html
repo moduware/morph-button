@@ -1,0 +1,117 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<!--<link rel="import" href="../polymer/lib/elements/dom-if.html">-->
+<!--<link rel="import" href="../polymer/lib/elements/dom-repeat.html">-->
+
+<!--
+`morph-button`
+Button that morphs for current mobile OS
+
+@demo demo/index.html
+-->
+
+<dom-module id="morph-button">
+  <template>
+    <style>
+      :host([platform="ios"]) {
+        border: 1px solid #007aff;
+        color: #007aff;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        border-radius: 5px;
+        line-height: 27px;
+        box-sizing: border-box;
+        appearance: none;
+        background: none;
+        padding: 0 10px;
+        margin: 0;
+        height: 29px;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        font-size: 14px;
+        font-family: inherit;
+        cursor: pointer;
+        outline: 0;
+      }
+
+      :host([platform="android"]) {
+        appearance: none;
+        background: none;
+        color: #007aff;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        border-radius: 2px;
+        line-height: 36px;
+        box-sizing:border-box;
+        
+        padding: 0 10px;
+        margin: 0;
+        height: 36px;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-family: inherit;
+        cursor: pointer;
+        min-width: 64px;
+        padding: 0 8px;
+        
+        overflow: hidden;
+        outline: 0;
+        border: none;
+
+        transform: translate3d(0,0,0);
+        transition: 300ms;
+      }
+      
+    </style>
+
+    <a href$="[[link]]" target$="[[target]]" rel$="[[relation]]">
+      <slot></slot>
+    </a>
+  </template>
+
+  <script>
+    /** @polymerElement */
+    class MorphButton extends MorphElement {
+      static get is() { return 'morph-button'; }
+      static get properties() {
+        return {
+          active: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          big: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          rounded: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          filled: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          color: {
+            type: String,
+            value: 'blue', // red, green, blue, gray
+            reflectToAttribute: true
+          },
+          link: String,
+          target: String, 
+          relation: String
+        };
+      }
+    }
+
+    window.customElements.define(MorphButton.is, MorphButton);
+  </script>
+</dom-module>
