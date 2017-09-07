@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../morph-shared-styles/morph-shared-styles.html">
 <link rel="import" href="../morph-element/morph-element.html">
 
 <!--
@@ -10,7 +11,7 @@ Button that morphs for current mobile OS
 
 <dom-module id="morph-button">
   <template>
-    <style>
+    <style include="morph-shared-styles">
       /* TODO: try to move these color table to other shared file */
       :host {
         --ios-blue-color: #007aff;
@@ -161,8 +162,7 @@ Button that morphs for current mobile OS
         border-radius: 2px;
         height: 36px;
         line-height: 36px;
-        min-width: 64px;
-        padding: 0 10px;
+        min-width: 64px;;
         padding: 0 8px;
         text-transform: uppercase;
         transform: translate3d(0,0,0);

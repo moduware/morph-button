@@ -4,7 +4,8 @@
   "main": "morph-button.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
-    "morph-element": "../morph-element/"
+    "morph-element": "../morph-element/",
+    "morph-shared-styles": "../morph-shared-styles/"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
