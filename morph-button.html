@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/utils/debounce.html">
 <link rel="import" href="../morph-shared-styles/morph-shared-styles.html">
 <link rel="import" href="../morph-element/morph-element.html">
 
@@ -82,6 +83,7 @@ Button that morphs for current mobile OS
         margin: 0;
         outline: 0;
         overflow: hidden;
+        position: relative;
         text-align: center;
         text-decoration: none;
         text-overflow:ellipsis;
@@ -165,12 +167,35 @@ Button that morphs for current mobile OS
       :host([platform="android"][raised]:active) {
         box-shadow: var(--android-raised-2-shadow);
       }
+
+      /* Ripple effect for buttons on Android */
+      .ripple--container {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+      }
+
+      .ripple--container span {
+        transform: scale(0);
+        border-radius: 100%;
+        position: absolute;
+        opacity: 0.75;
+        background-color: #fff;
+        animation: ripple 1000ms;
+      }
+
+      @keyframes ripple {
+        to {
+          opacity: 0;
+          transform: scale(2);
+        }
+      }
       
     </style>
 
     <a href$="[[link]]" target$="[[target]]" rel$="[[relation]]">
       <slot></slot>
     </a>
+    <div id="rippleContainer" class="ripple--container"></div>
   </template>
 
   <script>
@@ -219,6 +244,46 @@ Button that morphs for current mobile OS
           }
         };
       }
+
+      ready() {
+        super.ready();
+
+        this.addEventListener('mousedown', e => this.showRipple(e));
+        this.addEventListener('mouseup', e => {
+          this._debounce = Polymer.Debouncer.debounce(
+            this._debounce,
+            Polymer.Async.timeOut.after(1000),
+            () => this.cleanUp()
+          );
+        });
+      }
+
+      showRipple(e) {
+        const ripple = document.createElement('span');
+        const size = this.offsetWidth;
+        const pos = this.getBoundingClientRect();
+        const x = e.pageX - pos.left - size / 2;
+        const y = e.pageY - pos.top - size / 2;
+        const style =
+          'top:' +
+          y +
+          'px; left: ' +
+          x +
+          'px; height: ' +
+          size +
+          'px; width: ' +
+          size +
+          'px;';
+        this.$.rippleContainer.appendChild(ripple);
+        return ripple.setAttribute('style', style);
+      }
+
+      cleanUp() {
+        while (this.$.rippleContainer.firstChild) {
+          this.$.rippleContainer.removeChild(this.$.rippleContainer.firstChild);
+        }
+      }
+
     }
 
     window.customElements.define(MorphButton.is, MorphButton);
