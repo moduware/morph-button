@@ -1,7 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/utils/debounce.html">
+<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../morph-shared-styles/morph-shared-styles.html">
-<link rel="import" href="../morph-element/morph-element.html">
+<link rel="import" href="../morph-element/morph-element.html"> <!-- import needed to use Polymer Gestures Mixin -->
 
 <!--
 `morph-button`
@@ -248,13 +249,13 @@ Button that morphs for current mobile OS
       ready() {
         super.ready();
 
-        this.addEventListener('mousedown', e => { 
-          console.log('e', e.srcElement.platform);
+        Polymer.Gestures.addListener(this, 'down', e => {
           if (e.srcElement.platform == 'android') {
-            console.log('I am android and showing ripple');
+            console.log('I am android and showing ripple', e.pageX);
             this.showRipple(e) 
           }
         });
+
         this.addEventListener('mouseup', e => {
           this._debounce = Polymer.Debouncer.debounce(
             this._debounce,
@@ -268,8 +269,11 @@ Button that morphs for current mobile OS
         const ripple = document.createElement('span');
         const size = this.offsetWidth;
         const pos = this.getBoundingClientRect();
-        const x = e.pageX - pos.left - size / 2;
-        const y = e.pageY - pos.top - size / 2;
+
+        // for computation of style top and left using Polymer Gesture implementation
+        const x = e.detail.x - pos.left - size / 2; 
+        const y = e.detail.y - pos.top - size / 2;
+
         const style =
           'top:' +
           y +
@@ -280,6 +284,7 @@ Button that morphs for current mobile OS
           'px; width: ' +
           size +
           'px;';
+
         this.$.rippleContainer.appendChild(ripple);
         return ripple.setAttribute('style', style);
       }
