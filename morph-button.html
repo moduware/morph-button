@@ -194,8 +194,8 @@ Button that morphs for current mobile OS
 
     <a href$="[[link]]" target$="[[target]]" rel$="[[relation]]">
       <slot></slot>
+      <div id="rippleContainer" class="ripple--container"></div>
     </a>
-    <div id="rippleContainer" class="ripple--container"></div>
   </template>
 
   <script>
@@ -248,7 +248,13 @@ Button that morphs for current mobile OS
       ready() {
         super.ready();
 
-        this.addEventListener('mousedown', e => this.showRipple(e));
+        this.addEventListener('mousedown', e => { 
+          console.log('e', e.srcElement.platform);
+          if (e.srcElement.platform == 'android') {
+            console.log('I am android and showing ripple');
+            this.showRipple(e) 
+          }
+        });
         this.addEventListener('mouseup', e => {
           this._debounce = Polymer.Debouncer.debounce(
             this._debounce,
