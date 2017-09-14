@@ -251,18 +251,18 @@ Button that morphs for current mobile OS
 
         Polymer.Gestures.addListener(this, 'down', e => {
           if (e.srcElement.platform == 'android') {
-            console.log('I am android and showing ripple', e.pageX);
             this.showRipple(e) 
           }
         });
 
-        this.addEventListener('mouseup', e => {
+        Polymer.Gestures.addListener(this, 'up', e => {
           this._debounce = Polymer.Debouncer.debounce(
             this._debounce,
             Polymer.Async.timeOut.after(1000),
             () => this.cleanUp()
           );
         });
+        
       }
 
       showRipple(e) {
