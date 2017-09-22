@@ -15,35 +15,56 @@
 
     <test-fixture id="BasicTestFixture">
       <template>
-        <morph-button></morph-button>
+        <morph-button>Submit</morph-button>
       </template>
     </test-fixture>
 
-    <test-fixture id="ChangedPropertyTestFixture">
+    <test-fixture id="ChangedProperty">
       <template>
-        <morph-button prop1="new-prop1"></morph-button>
+        <morph-button color="red">Login</morph-button>
       </template>
     </test-fixture>
 
     <script>
-      suite('morph-button', function() {
+      describe('morph-button', function() {
+        // testing default properties and usual buttons
+        context('Default Usual Buttons', function() {
+          // declare variable for element in this context only
+          var element, test1;
 
-        test('instantiating the element with default properties works', function() {
-          var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'morph-button');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello morph-button!');
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('BasicTestFixture');
+          });
+
+          it('instantiating the element with default properties works', function() {
+            // test for default color which is blue by default and correct string is added
+            expect(element.color).to.be.equal('blue');
+            expect(element.innerHTML).to.be.equal('Submit');
+          });
+
         });
 
-        test('setting a property on the element works', function() {
-          // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+        //testing Filled buttons and changing property
+        context('Filled Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for color changes and adding attributes works
+            expect(element.color).to.be.equal('red');
+            expect(element.hasAttribute('filled')).to.be.false;
+            element.setAttribute('filled', '');
+            expect(element.hasAttribute('filled')).to.be.true;
+            console.log('element', window.getComputedStyle(element));
+            
+          });
         });
+
 
       });
     </script>
