@@ -66,7 +66,7 @@
           });
         });
 
-        //testing Filled buttons and changing property
+        //testing Big buttons and changing property
         context('Big Buttons', function() {
           var element;
 
@@ -80,6 +80,40 @@
           it('setting a property on the element works', function() {
             // test for adding big attributes works
             expect(element.hasAttribute('big')).to.be.true;      
+          });
+        });
+
+        //testing Rounded buttons and changing property
+        context('Rounded Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+            // setup for Big attribute
+            element.setAttribute('rounded', '');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for adding big attributes works
+            expect(element.hasAttribute('rounded')).to.be.true;      
+          });
+        });
+
+        //testing Raised buttons and changing property
+        context('Raised Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+            // setup for Big attribute
+            element.setAttribute('raised', '');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for adding big attributes works
+            expect(element.hasAttribute('raised')).to.be.true;      
           });
         });
 
