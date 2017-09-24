@@ -21,7 +21,7 @@
 
     <test-fixture id="ChangedProperty">
       <template>
-        <morph-button color="red">Login</morph-button>
+        <morph-button>Login</morph-button>
       </template>
     </test-fixture>
 
@@ -56,12 +56,11 @@
 
           it('setting a property on the element works', function() {
             // test for color changes and adding attributes works
+            element.setAttribute('color', 'red');
             expect(element.color).to.be.equal('red');
             expect(element.hasAttribute('filled')).to.be.false;
             element.setAttribute('filled', '');
-            expect(element.hasAttribute('filled')).to.be.true;
-            console.log('element', window.getComputedStyle(element));
-            
+            expect(element.hasAttribute('filled')).to.be.true;      
           });
         });
 
