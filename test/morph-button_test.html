@@ -142,12 +142,13 @@
             // Create a test fixture
             element = fixture('ChangedProperty');
             // setup for Link attribute
-            element.setAttribute('link', '');
+            element.setAttribute('link', 'www.google.com');
           });
 
           it('setting a property on the element works', function() {
             // test for adding Link attributes works
-            expect(element.hasAttribute('link')).to.be.true;      
+            expect(element.hasAttribute('link')).to.be.true;
+            expect(element.link).to.be.equal('www.google.com');    
           });
         });
 
