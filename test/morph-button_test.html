@@ -117,6 +117,23 @@
           });
         });
 
+        //testing Active buttons and changing property
+        context('Active Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+            // setup for Big attribute
+            element.setAttribute('active', '');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for adding big attributes works
+            expect(element.hasAttribute('active')).to.be.true;      
+          });
+        });
+
 
       });
     </script>
