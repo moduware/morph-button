@@ -90,12 +90,12 @@
           beforeEach(function() {
             // Create a test fixture
             element = fixture('ChangedProperty');
-            // setup for Big attribute
+            // setup for Rounded attribute
             element.setAttribute('rounded', '');
           });
 
           it('setting a property on the element works', function() {
-            // test for adding big attributes works
+            // test for adding Rounded attributes works
             expect(element.hasAttribute('rounded')).to.be.true;      
           });
         });
@@ -107,12 +107,12 @@
           beforeEach(function() {
             // Create a test fixture
             element = fixture('ChangedProperty');
-            // setup for Big attribute
+            // setup for Raised attribute
             element.setAttribute('raised', '');
           });
 
           it('setting a property on the element works', function() {
-            // test for adding big attributes works
+            // test for adding Raised attributes works
             expect(element.hasAttribute('raised')).to.be.true;      
           });
         });
@@ -124,13 +124,30 @@
           beforeEach(function() {
             // Create a test fixture
             element = fixture('ChangedProperty');
-            // setup for Big attribute
+            // setup for Active attribute
             element.setAttribute('active', '');
           });
 
           it('setting a property on the element works', function() {
-            // test for adding big attributes works
+            // test for adding Active attributes works
             expect(element.hasAttribute('active')).to.be.true;      
+          });
+        });
+
+        //testing Link buttons and changing property
+        context('Link Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+            // setup for Link attribute
+            element.setAttribute('link', '');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for adding Link attributes works
+            expect(element.hasAttribute('link')).to.be.true;      
           });
         });
 
