@@ -52,15 +52,34 @@
           beforeEach(function() {
             // Create a test fixture
             element = fixture('ChangedProperty');
+            // setup for color change
+            element.setAttribute('color', 'red');
           });
 
           it('setting a property on the element works', function() {
             // test for color changes and adding attributes works
-            element.setAttribute('color', 'red');
             expect(element.color).to.be.equal('red');
             expect(element.hasAttribute('filled')).to.be.false;
+            // add filled attribute
             element.setAttribute('filled', '');
             expect(element.hasAttribute('filled')).to.be.true;      
+          });
+        });
+
+        //testing Filled buttons and changing property
+        context('Big Buttons', function() {
+          var element;
+
+          beforeEach(function() {
+            // Create a test fixture
+            element = fixture('ChangedProperty');
+            // setup for Big attribute
+            element.setAttribute('big', '');
+          });
+
+          it('setting a property on the element works', function() {
+            // test for adding big attributes works
+            expect(element.hasAttribute('big')).to.be.true;      
           });
         });
 
