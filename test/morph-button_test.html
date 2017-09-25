@@ -31,11 +31,12 @@
         // testing default properties and usual buttons
         context('Default Usual Buttons', function() {
           // declare variable for element in this context only
-          var element, test1;
+          let element;
 
-          beforeEach(function() {
+          beforeEach(function(done) {
             // Create a test fixture
             element = fixture('BasicTestFixture');
+            done();
           });
 
           it('instantiating the element with default properties works', function() {
@@ -48,7 +49,7 @@
 
         //testing Filled buttons and changing property
         context('Filled Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
@@ -69,7 +70,7 @@
 
         //testing Big buttons and changing property
         context('Big Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
@@ -86,7 +87,7 @@
 
         //testing Rounded buttons and changing property
         context('Rounded Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
@@ -103,7 +104,7 @@
 
         //testing Raised buttons and changing property
         context('Raised Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
@@ -120,7 +121,7 @@
 
         //testing Active buttons and changing property
         context('Active Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
@@ -137,7 +138,7 @@
 
         //testing Link buttons and changing property
         context('Link Buttons', function() {
-          var element;
+          let element;
 
           beforeEach(function() {
             // Create a test fixture
