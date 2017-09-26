@@ -56,12 +56,6 @@
       </template>
     </test-fixture>
 
-     <test-fixture id="androidActiveProperty">
-      <template>
-        <morph-button platform="android" active >Login</morph-button>
-      </template>
-    </test-fixture>
-
     <test-fixture id="iosActiveProperty">
       <template>
         <morph-button platform="ios" active >Login</morph-button>
@@ -77,9 +71,10 @@
     <script>
       describe('morph-button', function() {
         // declare colors for testing in the whole button testing suite
-        let androidBlue = 'rgb(33, 150, 243)';
-        let white = 'rgb(255, 255, 255)';
-        let iosBorderRadius = '27px';
+        const androidBlue = 'rgb(33, 150, 243)';
+        const iosblueBackground = 'rgb(0, 122, 255)'
+        const white = 'rgb(255, 255, 255)';
+        const iosBorderRadius = '27px';
 
         // testing default Android Buttons properties
         context('Android Default Usual Buttons', function() {
@@ -99,7 +94,6 @@
             });
 
           });
-
 
           it('instantiating the button on android platform with default properties works', function() {
             // testing for default colors and which platform was set in html markup
@@ -238,32 +232,22 @@
         });
 
         //testing Active buttons and changing property
-        context('Active Android Buttons', function() {
-          let button;
-
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('androidActiveProperty');
-          });
-
-          it('setting a property on the button works', function() {
-            // test for setting Active attributes works
-            expect(button.hasAttribute('active')).to.be.true;      
-          });
-        });
-
-        //testing Active buttons and changing property
         context('Active iOS Buttons', function() {
-          let button;
+          let button, style;
 
           beforeEach(function() {
             // Create a test fixture
             button = fixture('iosActiveProperty');
+
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
           });
 
           it('setting a property on the button works', function() {
             // test for setting Active attributes works
-            expect(button.hasAttribute('active')).to.be.true;      
+            expect(button.hasAttribute('active')).to.be.true;
+            expect(style.backgroundColor).to.be.equal(iosblueBackground);
+            expect(style.color).to.be.equal(white);    
           });
         });
 
