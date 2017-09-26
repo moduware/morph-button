@@ -32,9 +32,15 @@
       </template>
     </test-fixture>
 
-    <test-fixture id="BigProperty">
+    <test-fixture id="AndroidBigProperty">
       <template>
-        <morph-button big >Login</morph-button>
+        <morph-button platform="android" big >Login</morph-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="IosBigProperty">
+      <template>
+        <morph-button platform="ios" big >Login</morph-button>
       </template>
     </test-fixture>
 
@@ -64,7 +70,7 @@
 
     <script>
       describe('morph-button', function() {
-        // declare colors for testing
+        // declare colors for testing in the whole button testing suite
         let androidBlue = 'rgb(33, 150, 243)';
         let white = 'rgb(255, 255, 255)';
 
@@ -132,16 +138,17 @@
 
         //testing Filled buttons and changing property
         context('Filled Buttons', function() {
-          let button;
+          let button, style;
 
           beforeEach(function() {
             // Create a test fixture
             button = fixture('FilledProperty');
+            
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
           });
 
           it('setting a property on the button in the html markup reflects corresponding property', function() {
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            let style = getComputedStyle(button);
             // testing filled property is reflected and correct CSS colors are assigned
             expect(button.hasAttribute('filled')).to.be.true;
             expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
@@ -149,19 +156,28 @@
           });
         });
 
-        //testing Big buttons and changing property
-        context('Big Buttons', function() {
-          let button;
-
+        //testing Big buttons
+        context('Big Android Buttons', function() {
+          let button, style;
+          
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('BigProperty');
+            button = fixture('AndroidBigProperty');
+
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
           });
 
           it('setting a property on the button in the html markup reflects corresponding property', function() {
             // test for setting big attributes works
-            expect(button.hasAttribute('big')).to.be.true;    
+            expect(button.hasAttribute('big')).to.be.true; 
+            expect(style.height).to.be.equal('48px');
           });
+        });
+
+        // testing Big iOS buttons
+        context('Big iOS Buttons', function() {
+          let button, style;
         });
 
         //testing Rounded buttons and changing property
