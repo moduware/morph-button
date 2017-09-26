@@ -46,7 +46,7 @@
 
     <test-fixture id="RoundedProperty">
       <template>
-        <morph-button rounded >Login</morph-button>
+        <morph-button platform="ios" rounded >Login</morph-button>
       </template>
     </test-fixture>
 
@@ -73,6 +73,7 @@
         // declare colors for testing in the whole button testing suite
         let androidBlue = 'rgb(33, 150, 243)';
         let white = 'rgb(255, 255, 255)';
+        let iosBorderRadius = '27px';
 
         // testing default Android Buttons properties
         context('Android Default Usual Buttons', function() {
@@ -194,17 +195,21 @@
         });
 
         //testing Rounded buttons and changing property
-        context('Rounded Buttons', function() {
+        context('Rounded iOS Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
             button = fixture('RoundedProperty');
+
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
           });
 
           it('setting a property on the button in the html markup reflects corresponding property', function() {
             // test for setting Rounded attributes works
-            expect(button.hasAttribute('rounded')).to.be.true;      
+            expect(button.hasAttribute('rounded')).to.be.true;  
+            expect(style.borderRadius).to.be.equal(iosBorderRadius);    
           });
         });
 
