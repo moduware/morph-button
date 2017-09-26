@@ -14,143 +14,190 @@
   </head>
   <body>
 
-    <test-fixture id="BasicTestFixture">
+    <test-fixture id="BasicAndroidFixture">
       <template>
-        <morph-button>Submit</morph-button>
+        <morph-button platform="android">Android</morph-button>
       </template>
     </test-fixture>
 
-    <test-fixture id="ChangedProperty">
+    <test-fixture id="BasicIosFixture">
       <template>
-        <morph-button>Login</morph-button>
+        <morph-button platform="ios">Submit</morph-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="FilledProperty">
+      <template>
+        <morph-button filled >Login</morph-button>
       </template>
     </test-fixture>
 
     <script>
       describe('morph-button', function() {
-        // testing default properties and usual buttons
-        context('Default Usual Buttons', function() {
-          // declare variable for element in this context only
-          let element;
+        // testing default Android Buttons properties
+        context('Android Default Usual Buttons', function() {
+          // declare variable for button in this context only
+          let button;
 
-          beforeEach(function(done) {
-            // Create a test fixture
-            element = fixture('BasicTestFixture');
-            done();
+          // Create a test fixture
+          beforeEach(function() {
+            // assignong button fixture for this context. This will automatically removed on the teardown phase of this test context
+            button = fixture('BasicAndroidFixture');
+
+            // mocking showRipple method of our morph-button
+            stub('morph-button', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
+
           });
 
-          it('instantiating the element with default properties works', function() {
+
+          it('instantiating the button on android platform with default properties works', function() {
             // test for default color which is blue by default and correct string is added
-            expect(element.color).to.be.equal('blue');
-            expect(element.innerHTML).to.be.equal('Submit');
+            let mouseDown = new Event('down');
+            button.dispatchEvent(mouseDown);
+            // button.cleanUp();
+            // Count # of calls to showRipple
+            expect(button.showRipple.callCount).to.be.equal(1);
+            expect(button.color).to.be.equal('blue');
+            expect(button).to.be.ok;
+            expect(button.innerHTML).to.be.equal('Android');
           });
 
         });
 
+        // testing default iOS Buttons properties
+        context('iOS Default Usual Buttons', function() {
+          // declare button variable in this context or scope
+          let button;
+          // create test fixture for iOS buttons
+          beforeEach(function() {
+            // inistanciatong button for this context
+            button = fixture('BasicIosFixture');
+
+            // mocking showRipple method of our morph-button
+            stub('morph-button', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
+          });
+
+          // test proper platform is shown and that correct default colors are applied
+          it('Instantiating the button on iOS platform with default properties works', function() {
+            // test that correct platform is shown when platform is set in html markup
+            expect(button.platform).to.be.equal('ios');
+            // test that showRipple is not applied if platform is iOS
+            expect(button.showRipple.callCount).to.be.equal(0);
+          });
+        });
+
         //testing Filled buttons and changing property
-        context('Filled Buttons', function() {
-          let element;
+        xcontext('Filled Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for color change
-            element.setAttribute('color', 'red');
+            button.setAttribute('color', 'red');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for color changes and adding attributes works
-            expect(element.color).to.be.equal('red');
-            expect(element.hasAttribute('filled')).to.be.false;
+            expect(button.color).to.be.equal('red');
+            expect(button.hasAttribute('filled')).to.be.false;
             // add filled attribute
-            element.setAttribute('filled', '');
-            expect(element.hasAttribute('filled')).to.be.true;      
+            button.setAttribute('filled', '');
+            expect(button.hasAttribute('filled')).to.be.true;      
           });
         });
 
         //testing Big buttons and changing property
-        context('Big Buttons', function() {
-          let element;
+        xcontext('Big Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for Big attribute
-            element.setAttribute('big', '');
+            button.setAttribute('big', '');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for adding big attributes works
-            expect(element.hasAttribute('big')).to.be.true;      
+            expect(button.hasAttribute('big')).to.be.true;      
           });
         });
 
         //testing Rounded buttons and changing property
-        context('Rounded Buttons', function() {
-          let element;
+        xcontext('Rounded Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for Rounded attribute
-            element.setAttribute('rounded', '');
+            button.setAttribute('rounded', '');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for adding Rounded attributes works
-            expect(element.hasAttribute('rounded')).to.be.true;      
+            expect(button.hasAttribute('rounded')).to.be.true;      
           });
         });
 
         //testing Raised buttons and changing property
-        context('Raised Buttons', function() {
-          let element;
+        xcontext('Raised Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for Raised attribute
-            element.setAttribute('raised', '');
+            button.setAttribute('raised', '');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for adding Raised attributes works
-            expect(element.hasAttribute('raised')).to.be.true;      
+            expect(button.hasAttribute('raised')).to.be.true;      
           });
         });
 
         //testing Active buttons and changing property
-        context('Active Buttons', function() {
-          let element;
+        xcontext('Active Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for Active attribute
-            element.setAttribute('active', '');
+            button.setAttribute('active', '');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for adding Active attributes works
-            expect(element.hasAttribute('active')).to.be.true;      
+            expect(button.hasAttribute('active')).to.be.true;      
           });
         });
 
         //testing Link buttons and changing property
-        context('Link Buttons', function() {
-          let element;
+        xcontext('Link Buttons', function() {
+          let button;
 
           beforeEach(function() {
             // Create a test fixture
-            element = fixture('ChangedProperty');
+            button = fixture('ChangedProperty');
             // setup for Link attribute
-            element.setAttribute('link', 'www.google.com');
+            button.setAttribute('link', 'www.google.com');
           });
 
-          it('setting a property on the element works', function() {
+          it('setting a property on the button works', function() {
             // test for adding Link attributes works
-            expect(element.hasAttribute('link')).to.be.true;
-            expect(element.link).to.be.equal('www.google.com');    
+            expect(button.hasAttribute('link')).to.be.true;
+            expect(button.link).to.be.equal('www.google.com');    
           });
         });
 
