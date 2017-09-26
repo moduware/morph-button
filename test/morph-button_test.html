@@ -168,7 +168,7 @@
             style = getComputedStyle(button);
           });
 
-          it('setting a property on the button in the html markup reflects corresponding property', function() {
+          it('setting a property on the Big Android button in the html markup reflects corresponding property and CSS height', function() {
             // test for setting big attributes works
             expect(button.hasAttribute('big')).to.be.true; 
             expect(style.height).to.be.equal('48px');
@@ -178,6 +178,19 @@
         // testing Big iOS buttons
         context('Big iOS Buttons', function() {
           let button, style;
+
+          beforeEach(function() {
+            // cereate button test fixture
+            button = fixture('IosBigProperty');
+
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
+          });
+
+          it('setting a property on the Big iOS button in the html markup reflects corresponding property and CSS height', function() {
+            expect(button.hasAttribute('big')).to.be.true;
+            expect(style.height).to.be.equal('44px');
+          });
         });
 
         //testing Rounded buttons and changing property
