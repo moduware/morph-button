@@ -28,7 +28,7 @@
 
     <test-fixture id="FilledProperty">
       <template>
-        <morph-button filled >Login</morph-button>
+        <morph-button platform="android" filled >Login</morph-button>
       </template>
     </test-fixture>
 
@@ -38,8 +38,36 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="RoundedProperty">
+      <template>
+        <morph-button rounded >Login</morph-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="RaisedProperty">
+      <template>
+        <morph-button raised >Login</morph-button>
+      </template>
+    </test-fixture>
+
+     <test-fixture id="ActiveProperty">
+      <template>
+        <morph-button platform="android" active >Login</morph-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="LinkProperty">
+      <template>
+        <morph-button platform="android" link="www.google.com" >Login</morph-button>
+      </template>
+    </test-fixture>
+
     <script>
       describe('morph-button', function() {
+        // declare colors for testing
+        let androidBlue = 'rgb(33, 150, 243)';
+        let white = 'rgb(255, 255, 255)';
+
         // testing default Android Buttons properties
         context('Android Default Usual Buttons', function() {
           // declare variable for button in this context only
@@ -111,8 +139,13 @@
             button = fixture('FilledProperty');
           });
 
-          it('setting a property on the button works', function() {
-            expect(button.hasAttribute('filled')).to.be.true;      
+          it('setting a property on the button in the html markup reflects corresponding property', function() {
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            let style = getComputedStyle(button);
+            // testing filled property is reflected and correct CSS colors are assigned
+            expect(button.hasAttribute('filled')).to.be.true;
+            expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
+            expect(style.color).to.be.equal(white);  // text color is white
           });
         });
 
@@ -125,38 +158,34 @@
             button = fixture('BigProperty');
           });
 
-          it('setting a property on the button works', function() {
-            // test for adding big attributes works
+          it('setting a property on the button in the html markup reflects corresponding property', function() {
+            // test for setting big attributes works
             expect(button.hasAttribute('big')).to.be.true;    
           });
         });
 
         //testing Rounded buttons and changing property
-        xcontext('Rounded Buttons', function() {
+        context('Rounded Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for Rounded attribute
-            button.setAttribute('rounded', '');
+            button = fixture('RoundedProperty');
           });
 
-          it('setting a property on the button works', function() {
-            // test for adding Rounded attributes works
+          it('setting a property on the button in the html markup reflects corresponding property', function() {
+            // test for setting Rounded attributes works
             expect(button.hasAttribute('rounded')).to.be.true;      
           });
         });
 
         //testing Raised buttons and changing property
-        xcontext('Raised Buttons', function() {
+        context('Raised Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for Raised attribute
-            button.setAttribute('raised', '');
+            button = fixture('RaisedProperty');
           });
 
           it('setting a property on the button works', function() {
@@ -166,35 +195,32 @@
         });
 
         //testing Active buttons and changing property
-        xcontext('Active Buttons', function() {
+        context('Active Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for Active attribute
-            button.setAttribute('active', '');
+            button = fixture('ActiveProperty');
           });
 
           it('setting a property on the button works', function() {
-            // test for adding Active attributes works
+            // test for setting Active attributes works
             expect(button.hasAttribute('active')).to.be.true;      
           });
         });
 
         //testing Link buttons and changing property
-        xcontext('Link Buttons', function() {
+        context('Link Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for Link attribute
-            button.setAttribute('link', 'www.google.com');
+            button = fixture('LinkProperty');
           });
 
           it('setting a property on the button works', function() {
             // test for adding Link attributes works
+            console.log(button.href);
             expect(button.hasAttribute('link')).to.be.true;
             expect(button.link).to.be.equal('www.google.com');    
           });
