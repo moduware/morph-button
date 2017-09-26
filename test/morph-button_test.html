@@ -32,6 +32,12 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="BigProperty">
+      <template>
+        <morph-button big >Login</morph-button>
+      </template>
+    </test-fixture>
+
     <script>
       describe('morph-button', function() {
         // testing default Android Buttons properties
@@ -55,15 +61,16 @@
 
 
           it('instantiating the button on android platform with default properties works', function() {
+            // testing for default colors and which platform was set in html markup
+            expect(button.color).to.be.equal('blue');
+            expect(button.innerHTML).to.be.equal('Android');
+            
             // test for default color which is blue by default and correct string is added
             let mouseDown = new Event('down');
             button.dispatchEvent(mouseDown);
             // button.cleanUp();
             // Count # of calls to showRipple
             expect(button.showRipple.callCount).to.be.equal(1);
-            expect(button.color).to.be.equal('blue');
-            expect(button).to.be.ok;
-            expect(button.innerHTML).to.be.equal('Android');
           });
 
         });
@@ -87,7 +94,8 @@
 
           // test proper platform is shown and that correct default colors are applied
           it('Instantiating the button on iOS platform with default properties works', function() {
-            // test that correct platform is shown when platform is set in html markup
+            // testing for default colors and which platform was set in html markup
+            expect(button.color).to.be.equal('blue');
             expect(button.platform).to.be.equal('ios');
             // test that showRipple is not applied if platform is iOS
             expect(button.showRipple.callCount).to.be.equal(0);
@@ -95,40 +103,31 @@
         });
 
         //testing Filled buttons and changing property
-        xcontext('Filled Buttons', function() {
+        context('Filled Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for color change
-            button.setAttribute('color', 'red');
+            button = fixture('FilledProperty');
           });
 
           it('setting a property on the button works', function() {
-            // test for color changes and adding attributes works
-            expect(button.color).to.be.equal('red');
-            expect(button.hasAttribute('filled')).to.be.false;
-            // add filled attribute
-            button.setAttribute('filled', '');
             expect(button.hasAttribute('filled')).to.be.true;      
           });
         });
 
         //testing Big buttons and changing property
-        xcontext('Big Buttons', function() {
+        context('Big Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ChangedProperty');
-            // setup for Big attribute
-            button.setAttribute('big', '');
+            button = fixture('BigProperty');
           });
 
           it('setting a property on the button works', function() {
             // test for adding big attributes works
-            expect(button.hasAttribute('big')).to.be.true;      
+            expect(button.hasAttribute('big')).to.be.true;    
           });
         });
 
