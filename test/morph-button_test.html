@@ -52,13 +52,19 @@
 
     <test-fixture id="RaisedProperty">
       <template>
-        <morph-button raised >Login</morph-button>
+        <morph-button platform="android" raised >Login</morph-button>
       </template>
     </test-fixture>
 
-     <test-fixture id="ActiveProperty">
+     <test-fixture id="androidActiveProperty">
       <template>
         <morph-button platform="android" active >Login</morph-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="iosActiveProperty">
+      <template>
+        <morph-button platform="ios" active >Login</morph-button>
       </template>
     </test-fixture>
 
@@ -194,7 +200,7 @@
           });
         });
 
-        //testing Rounded buttons and changing property
+        //testing iOS Rounded buttons and changing property
         context('Rounded iOS Buttons', function() {
           let button;
 
@@ -213,13 +219,16 @@
           });
         });
 
-        //testing Raised buttons and changing property
+        //testing Android Raised buttons and changing property
         context('Raised Buttons', function() {
-          let button;
+          let button, style;
 
           beforeEach(function() {
             // Create a test fixture
             button = fixture('RaisedProperty');
+
+            // getting actual CSS of button rendered in the shadow DOM for testing purposes
+            style = getComputedStyle(button);
           });
 
           it('setting a property on the button works', function() {
@@ -229,12 +238,27 @@
         });
 
         //testing Active buttons and changing property
-        context('Active Buttons', function() {
+        context('Active Android Buttons', function() {
           let button;
 
           beforeEach(function() {
             // Create a test fixture
-            button = fixture('ActiveProperty');
+            button = fixture('androidActiveProperty');
+          });
+
+          it('setting a property on the button works', function() {
+            // test for setting Active attributes works
+            expect(button.hasAttribute('active')).to.be.true;      
+          });
+        });
+
+        //testing Active buttons and changing property
+        context('Active iOS Buttons', function() {
+          let button;
+
+          beforeEach(function() {
+            // Create a test fixture
+            button = fixture('iosActiveProperty');
           });
 
           it('setting a property on the button works', function() {
