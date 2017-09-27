@@ -19,3 +19,5 @@ $ polymer test
 ```
 
 Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+
+For s brief overview of Polymer Testing please go to this page [Polymer Test](https://www.polymer-project.org/2.0/docs/tools/tests)
