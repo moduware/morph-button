@@ -312,6 +312,16 @@ Button that morphs for current mobile OS
         }
       }
 
+      getStyle() {
+        let style;
+        if (ShadyCSS) {
+          style = ShadyCSS.getComputedStyleValue(document.html, '--morph-shared-colors-file-attached');
+        } else {
+          style = getComputedStyle(document.html, '--morph-shared-colors-file-attached');
+        }
+        console.log('style', style);
+      }
+
     }
 
     window.customElements.define(MorphButton.is, MorphButton);
