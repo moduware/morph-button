@@ -16,6 +16,10 @@ Button that morphs for current mobile OS
     <style include="morph-shared-styles">
       /* if iOS assigning colors from iOS colors table */
       :host([platform="ios"]) {
+        /* default blue ios colors added here and don't need shared color file to work */
+        --polymorph-ios-blue-color: #007aff;
+        --polymorph-ios-blue-color--background: rgba(0, 122, 255, 0.15);
+
         --blue-color: var(--polymorph-ios-blue-color);
         --blue-color--background: var(--polymorph-ios-blue-color--background);
 
@@ -31,6 +35,10 @@ Button that morphs for current mobile OS
 
       /* if Android assigning colors from Android colors table */
       :host([platform="android"]) {
+        /* default blue android colors added here to make it work without shared colors file */
+        --polymorph-android-blue-color: #2196f3;
+        --polymorph-android-blue-color--background: #0D82DF;
+
         --blue-color: var(--polymorph-android-blue-color);
         --blue-color--background: var(--polymorph-android-blue-color--background);
 
