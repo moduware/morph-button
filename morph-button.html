@@ -14,6 +14,10 @@ Button that morphs for current mobile OS
 <dom-module id="morph-button">
   <template>
     <style include="morph-shared-styles">
+      :host {
+        --have-access-to-shared-colors: var(--morph-shared-colors-connected, black);
+      }
+
       /* if iOS assigning colors from iOS colors table */
       :host([platform="ios"]) {
         /* default blue ios colors added here and don't need shared color file to work */
@@ -310,16 +314,6 @@ Button that morphs for current mobile OS
         while (this.$.rippleContainer.firstChild) {
           this.$.rippleContainer.removeChild(this.$.rippleContainer.firstChild);
         }
-      }
-
-      getStyle() {
-        let style;
-        if (ShadyCSS) {
-          style = ShadyCSS.getComputedStyleValue(document.html, '--morph-shared-colors-file-attached');
-        } else {
-          style = getComputedStyle(document.html, '--morph-shared-colors-file-attached');
-        }
-        console.log('style', style);
       }
 
     }
