@@ -131,6 +131,10 @@ Button that morphs for current mobile OS
         border-color: transparent;
       }
 
+      :host([platform="ios"][filled]:active) {
+        opacity: 0.8;
+      }
+
 /* Android only styles */
       :host([platform="android"]) {
         --ripple-color: var(--color);
