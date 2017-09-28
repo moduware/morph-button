@@ -24,6 +24,16 @@
         --ripple-color: #BD2C40;
       }
     </style>
+
+    <script>
+      var clickListener = function() {
+        console.log('alert');
+      }
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('listener').addEventListener('click', clickListener);
+      });
+    </script>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -34,7 +44,7 @@
           <h3>Android</h3>
           
           <h4>Usual/ buttons</h4>
-          <p><morph-button>Button</morph-button></p>
+          <p><morph-button id="listener" >Button</morph-button></p>
           <p><morph-button>Button</morph-button></p>
           
           <h4>Raised Buttons</h4>
