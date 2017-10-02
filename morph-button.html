@@ -286,6 +286,11 @@ Button that morphs for current mobile OS
         
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+        this.checkIfSharedStylesConnected();
+      }
+
       showRipple(e) {
         const ripple = document.createElement('span');
         const size = this.offsetWidth;
