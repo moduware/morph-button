@@ -289,7 +289,7 @@ Button that morphs for current mobile OS
 
       colorAssigned(oldValue, newValue) {
         let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
-        console.log(sharedColorsNotConnected);
+        
         if(this.checkIfStandardColorUsed(oldValue) && sharedColorsNotConnected) {
           console.warn(`WARNING: You need to include morph-shared-styles if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
         }
