@@ -2,7 +2,7 @@
   "expanded": true,
   "plugins": {
     "local": {
-      "browsers": ["chrome"]
+      "browsers": ["chrome", "safari"]
     }
   }
 }
