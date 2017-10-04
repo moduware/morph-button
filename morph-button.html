@@ -291,12 +291,12 @@ Button that morphs for current mobile OS
         let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
         
         if(this.checkIfStandardColorUsed(oldValue) && sharedColorsNotConnected) {
-          console.warn(`WARNING: You need to include morph-shared-styles if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
+          console.warn(`WARNING: You need to include morph-shared-colors if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
         }
       }
 
       checkIfStandardColorUsed(oldValue) {
-        if(oldValue == 'blue' || oldValue == 'red' || oldValue == 'gray' || oldValue == 'green') {
+        if(oldValue == 'red' || oldValue == 'gray' || oldValue == 'green') {
           return true;
         }
         return false;
