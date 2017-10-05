@@ -271,12 +271,29 @@ Button that morphs for current mobile OS
       ready() {
         super.ready();
 
+        /**
+         * Gesture addListener down
+         *
+         * @param  {Object} this - the button element
+         * @param  {string} 'down' - event from key down that we want to listen
+         * @param  {Object} e - refers to the element that event down have happened
+         *
+         */
         Polymer.Gestures.addListener(this, 'down', e => {
           if (e.srcElement.platform == 'android') {
             this.showRipple(e) 
           }
         });
 
+        /**
+         * Gestures addListener up
+         *
+         * @param  {Object} this - the button element
+         * @param  {string} 'up' - the type of event we want to listen which is the key up or finger up
+         * @param  {Object} e    - refers to the element that event up have happened
+         *
+         * _debounce will limit the ripple function will fire
+         */
         Polymer.Gestures.addListener(this, 'up', e => {
           this._debounce = Polymer.Debouncer.debounce(
             this._debounce,
@@ -287,6 +304,14 @@ Button that morphs for current mobile OS
         
       }
 
+      /**
+       * colorAssigned function will fire a console.warn message depending on wether the standard color red gray and green were used
+       *
+       * @param  {[any]} oldValue old value of color property
+       * @param  {any} newValue new value of color property
+       *
+       * @return {String}          gives a console warn message when shared-colors is not included
+       */
       colorAssigned(oldValue, newValue) {
         let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
         
@@ -295,6 +320,13 @@ Button that morphs for current mobile OS
         }
       }
 
+      /**
+       * checkIfStandardColorUsed checks if standard colors were used
+       *
+       * @param  {String} oldValue - old value of the color property from its observer
+       *
+       * @return {Boolean}          returns true if oldValue is equal to color red, gray or green else returns false
+       */         
       checkIfStandardColorUsed(oldValue) {
         if(oldValue == 'red' || oldValue == 'gray' || oldValue == 'green') {
           return true;
@@ -302,12 +334,13 @@ Button that morphs for current mobile OS
         return false;
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        // for discussion with Alex
-        // this.checkIfSharedStylesConnected();
-      }
-
+      /**
+       * showRipple gives material design-like ripple effect when buttons are click
+       *
+       * @param  {Object} e - the button element that the event key down or finger down has happen
+       *
+       * @return {Object}   - returns the style attribute of the button element with corresponding css styling related to the ripple effect
+       */
       showRipple(e) {
         const ripple = document.createElement('span');
         const size = this.offsetWidth;
@@ -332,6 +365,11 @@ Button that morphs for current mobile OS
         return ripple.setAttribute('style', style);
       }
 
+      /**
+       * cleanUp
+       *
+       * clean up the container for the ripple effect
+       */
       cleanUp() {
         while (this.$.rippleContainer.firstChild) {
           this.$.rippleContainer.removeChild(this.$.rippleContainer.firstChild);
