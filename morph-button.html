@@ -226,40 +226,48 @@ Button that morphs for current mobile OS
       static get is() { return 'morph-button'; }
       static get properties() {
         return {
-          /* Common for both platforms */
+          /** Common for both platforms */
           big: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
           },
+
+          /** Common for both platforms */
           filled: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
           },
+
+          /** Common for both platforms */
           color: {
             type: String,
             value: 'blue', // red, green, blue, gray
             reflectToAttribute: true,
             observer: 'colorAssigned'
           },
+
+          /** Common for both platforms */
           link: String,
           target: String, 
           relation: String,
 
-          /* iOS specific */
+          /** iOS specific property */
           active: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
           },
+
+          /** iOS specific property */
           rounded: {
             type: Boolean,
             value: false,
             reflectToAttribute: true
           },
-
-          /* Android specific */
+          
+          /** Android specific property */
           raised: {
             type: Boolean,
             value: false,
@@ -366,8 +374,6 @@ Button that morphs for current mobile OS
       }
 
       /**
-       * cleanUp
-       *
        * clean up the container for the ripple effect
        */
       cleanUp() {
