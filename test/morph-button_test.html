@@ -74,6 +74,12 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="buttonDefaultColor">
+      <template>
+        <morph-button platform="android" >Login</morph-button>
+      </template>
+    </test-fixture>
+    
     <script>
       describe('morph-button', function() {
         // declare colors for testing in the whole button testing suite
@@ -307,11 +313,11 @@
 
             // stubbing the checkIfStandardColorUsed and checkIfSharedStylesConnected so we can test the colorAssigned is working properly
             stub('morph-button', {
-              // mock checkIfSharedStylesConnected to be true simulate standard colors are used
+              // mock checkIfStandardColorUsed to be true simulate standard colors are used
               checkIfStandardColorUsed: function() {
-                return false;
+                return true;
               },
-              // mock checkIfStandardColorUsed to return false meaning shared color file is not detected
+              // mock checkIfSharedStylesConnected to return false meaning shared color file is not detected
               checkIfSharedStylesConnected: function() {
                 return false;
               }
@@ -320,12 +326,45 @@
             button = fixture('consoleWarningsGreenColor');
           });
 
+          // destroy logger spy created after the test
+          afterEach(function() {
+            logger.restore();
+          });
+
           it('calls the colorAssigned method once for each element', function(){
-            expect(button.checkIfStandardColorUsed()).to.be.false;
+            expect(button.checkIfStandardColorUsed()).to.be.true;
             expect(button.checkIfSharedStylesConnected()).to.be.false;
             expect(logger.callCount).to.be.equal(1);
             expect(logger).to.have.been.calledWith(message);
           });
+        });
+
+        context('On load - and standard colors are NOT used', function() {
+          let button, logger;
+          
+          beforeEach(function() {
+            button = fixture('buttonDefaultColor');
+
+            stub('morph-button', {
+              // mock checkIfStandardColorUsed to be false meaning standard colors not used
+              checkIfStandardColorUsed: function() {
+                return false;
+              }
+            });
+            // spy on console.warn
+            logger = sinon.spy(console, 'warn');
+          });
+
+          // destroy the logger spy created above after test
+          afterEach(function() {
+            logger.restore();
+          });
+          
+          it('should not diplay the console.warn message', function() {
+            // test that console.warn is not called by checking our spy logger callCount
+            expect(logger.callCount).to.be.equal(0);
+          });
+
         });
 
 
