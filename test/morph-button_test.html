@@ -295,23 +295,36 @@
 
 
         context('On load - standard colors used and shared color file not detected', function() {
-          let button, logger;
+          let button, logger, message, spy;
 
           beforeEach(function() {
-            // stubbing the colorAssigned so we can check if it is being run on load
+            // we will spy on console.warn everytime it is called we can checked for what message it displayed or called with
+            // or how many times console.warn was called etc.
+            logger = sinon.spy(console, 'warn');
+
+            // the console.warn message that we expect to see displayed
+            message = 'WARNING: You need to include morph-shared-colors if you want to use standard colors like green in the color attribute of morph-button.';
+
+            // stubbing the checkIfStandardColorUsed and checkIfSharedStylesConnected so we can test the colorAssigned is working properly
             stub('morph-button', {
+              // mock checkIfSharedStylesConnected to be true simulate standard colors are used
               checkIfStandardColorUsed: function() {
-                return true;
+                return false;
+              },
+              // mock checkIfStandardColorUsed to return false meaning shared color file is not detected
+              checkIfSharedStylesConnected: function() {
+                return false;
               }
             });
             
             button = fixture('consoleWarningsGreenColor');
-            
           });
 
           it('calls the colorAssigned method once for each element', function(){
-            expect(button.checkIfStandardColorUsed()).to.be.true;
-
+            expect(button.checkIfStandardColorUsed()).to.be.false;
+            expect(button.checkIfSharedStylesConnected()).to.be.false;
+            expect(logger.callCount).to.be.equal(1);
+            expect(logger).to.have.been.calledWith(message);
           });
         });
 
