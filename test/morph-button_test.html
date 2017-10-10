@@ -273,23 +273,44 @@
           });
         });
 
-        context('Console.warn message', function() {
-          let button, logger;
+        context('Button on load', function() {
+          let button;
 
-          beforeEach(function(done) {
-            
+          beforeEach(function() {
+            // stubbing the colorAssigned so we can check if it is being run on load
             stub('morph-button', {
               colorAssigned: function() {
                 console.log('colorAssigned was called.')
               }
             });
             
+            // assigning to button var the consoleWarningsGreenColor fixture
             button = fixture('consoleWarningsGreenColor');
-            done();
           });
 
           it('calls the colorAssigned method once for each element', function(){
             expect(button.colorAssigned.callCount).to.be.equal(1);
+          });
+        });
+
+
+        context('On load - standard colors used and shared color file not detected', function() {
+          let button, logger;
+
+          beforeEach(function() {
+            // stubbing the colorAssigned so we can check if it is being run on load
+            stub('morph-button', {
+              checkIfStandardColorUsed: function() {
+                return true;
+              }
+            });
+            
+            button = fixture('consoleWarningsGreenColor');
+            
+          });
+
+          it('calls the colorAssigned method once for each element', function(){
+            expect(button.checkIfStandardColorUsed()).to.be.true;
 
           });
         });
