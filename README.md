@@ -142,3 +142,4 @@ You can clone the repository to create a local copy on your computer.
 [WCT]: https://github.com/Polymer/web-component-tester  
 
 [Polymer Test]: https://www.polymer-project.org/2.0/docs/tools/tests
+
