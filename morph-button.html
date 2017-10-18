@@ -1,10 +1,7 @@
-<!-- <link rel="import" href="../polymer/polymer-element.html"> -->
-<link rel="import" href="../polymer/lib/utils/debounce.html">
-<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html"> <!-- import needed to use Polymer Gestures Mixin -->
-<link rel="import" href="/bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
-<link rel="import" href="/bower_components/iron-demo-helpers/demo-snippet.html">
-<link rel="import" href="/bower_components/morph-shared-styles/morph-shared-styles.html">
-<link rel="import" href="/bower_components/morph-element/morph-element.html"> 
+<link rel="import" href="./bower_components/polymer/lib/utils/debounce.html">
+<link rel="import" href="./bower_components/polymer/lib/mixins/gesture-event-listeners.html"> <!-- import needed to use Polymer Gestures Mixin -->
+<link rel="import" href="./bower_components/morph-shared-styles/morph-shared-styles.html">
+<!-- <link rel="import" href="./bower_components/morph-element/morph-element.html">  -->
 
 <!--
 `morph-button`
@@ -291,7 +288,7 @@ Button that morphs for current mobile OS
          */
         Polymer.Gestures.addListener(this, 'down', e => {
           if (e.srcElement.platform == 'android') {
-            this.showRipple(e) 
+            this.showRipple(e)
           }
         });
 
