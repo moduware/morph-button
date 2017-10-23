@@ -10,7 +10,7 @@
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
     "morph-shared-styles": "https://github.com/nexpaq/morph-shared-styles/archive/0.0.1.zip",
     "morph-shared-colors": "https://github.com/nexpaq/morph-shared-colors/archive/0.0.1.zip",
-    "morph-element": "https://github.com/nexpaq/morph-element.git#0.0.2"
+    "morph-element": "https://github.com/nexpaq/morph-element.git#master"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
