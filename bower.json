@@ -8,8 +8,8 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
-    "morph-shared-styles": "https://github.com/nexpaq/morph-shared-styles/archive/0.0.1.zip",
-    "morph-shared-colors": "https://github.com/nexpaq/morph-shared-colors/archive/0.0.1.zip",
+    "morph-shared-styles": "https://github.com/moduware/morph-shared-styles.git#master",
+    "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#master",
     "morph-element": "https://github.com/nexpaq/morph-element.git#master"
   },
   "devDependencies": {
