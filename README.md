@@ -15,9 +15,9 @@ For the information about how to clone the desired repository, running the local
 |           Big           | Boolean | Identifies if the button is big.        |  False  |
 |          Filled         | Boolean | Identifies if the button is filled.     |  False  |
 |          Color          |  String | Identifies the color of the button      | 'blue'  |
-|   Active<br> IOS only   | Boolean | Shows if the button is in active state. |  False  |
-| Rounded<br> IOS only    | Boolean | Identifies if the button is rounded.    |  False  |
-| Raised<br> Android only | Boolean | Identifies if the button is raised.     |  False  |
+|   Active<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
+| Rounded<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
+| Raised<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
 
 ## Styling
 
