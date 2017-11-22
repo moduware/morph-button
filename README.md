@@ -10,6 +10,14 @@ For the information about how to clone the desired repository, running the local
 
 ## Attributes
 
+|     Custom Attribute    |   Type  |               Description               | Default |
+|:-----------------------:|:-------:|:---------------------------------------:|:-------:|
+|           Big           | Boolean | Identifies if the button is big.        |  False  |
+|          Filled         | Boolean | Identifies if the button is filled.     |  False  |
+|          Color          |  String | Identifies the color of the button      | 'blue'  |
+|   Active<br> IOS only   | Boolean | Shows if the button is in active state. |  False  |
+| Rounded<br> IOS only    | Boolean | Identifies if the button is rounded.    |  False  |
+| Raised<br> Android only | Boolean | Identifies if the button is raised.     |  False  |
 
 ## Styling
 
