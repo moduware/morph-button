@@ -12,12 +12,12 @@ For the information about how to clone the desired repository, running the local
 
 |     Custom Attribute    |   Type  |               Description               | Default |
 |:-----------------------:|:-------:|:---------------------------------------:|:-------:|
-|           Big           | Boolean | Identifies if the button is big.        |  False  |
-|          Filled         | Boolean | Identifies if the button is filled.     |  False  |
-|          Color          |  String | Identifies the color of the button      | 'blue'  |
-|   Active<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
-| Rounded<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
-| Raised<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
+|           **Big**           | Boolean | Identifies if the button is big.        |  False  |
+|          **Filled**         | Boolean | Identifies if the button is filled.     |  False  |
+|          **Color**          |  String | Identifies the color of the button      | 'blue'  |
+|   **Active**<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
+| **Rounded**<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
+| **Raised**<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
 
 ## Styling
 
