@@ -2,6 +2,7 @@
 <link rel="import" href="/bower_components/polymer/lib/mixins/gesture-event-listeners.html"> <!-- import needed to use Polymer Gestures Mixin -->
 <link rel="import" href="/bower_components/morph-shared-styles/morph-shared-styles.html">
 <link rel="import" href="/bower_components/morph-element/morph-element.html">
+<link rel="import" href="/bower_components/morph-ripple/morph-ripple.html">
 
 <dom-module id="morph-button">
   <template>
@@ -141,8 +142,6 @@
 
 /* Android only styles */
       :host([platform="android"]) {
-        --ripple-color: var(--color);
-
         border-radius: 2px;
         height: 36px;
         line-height: 36px;
@@ -166,7 +165,6 @@
       :host([platform="android"][filled]) {
         background-color: var(--color);
         color: var(--filled-text-color);
-        --ripple-color: white;
       }
       
       :host([platform="android"][filled]:active) {
@@ -181,34 +179,23 @@
         box-shadow: var(--android-raised-2-shadow);
       }
 
-      /* Ripple effect for buttons on Android */
-      .ripple--container {
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        pointer-events: none;
+      :host(:not([platform="android"])) morph-ripple {
+        display: none;
       }
 
-      .ripple--container span {
-        transform: scale(0);
-        border-radius: 100%;
-        position: absolute;
-        opacity: 0.75;
-        background-color: var(--ripple-color);
-        animation: ripple 1000ms;
+      :host([platform="android"]) morph-ripple {
+        --ripple-color: var(--color);
       }
 
-      @keyframes ripple {
-        to {
-          opacity: 0;
-          transform: scale(2);
-        }
+      :host([platform="android"][filled]) morph-ripple {
+        --ripple-color: white;
       }
       
     </style>
 
     <a href$="[[link]]" target$="[[target]]" rel$="[[relation]]">
       <slot></slot>
-      <div id="rippleContainer" class="ripple--container"></div>
+      <morph-ripple></morph-ripple>
     </a>
   </template>
 
@@ -275,42 +262,6 @@
         };
       }
 
-      ready() {
-        super.ready();
-
-        /**
-         * Gesture addListener down
-         *
-         * @param  {Object} this - the button element
-         * @param  {string} 'down' - event from key down that we want to listen
-         * @param  {Object} e - refers to the element that event down have happened
-         *
-         */
-        Polymer.Gestures.addListener(this, 'down', e => {
-          if (e.srcElement.platform == 'android') {
-            this.showRipple(e)
-          }
-        });
-
-        /**
-         * Gestures addListener up
-         *
-         * @param  {Object} this - the button element
-         * @param  {string} 'up' - the type of event we want to listen which is the key up or finger up
-         * @param  {Object} e    - refers to the element that event up have happened
-         *
-         * _debounce will limit the ripple function will fire
-         */
-        Polymer.Gestures.addListener(this, 'up', e => {
-          this._debounce = Polymer.Debouncer.debounce(
-            this._debounce,
-            Polymer.Async.timeOut.after(1000),
-            () => this.cleanUp()
-          );
-        });
-        
-      }
-
       /**
        * colorAssigned function will fire a console.warn message depending on wether the standard color red gray and green were used
        *
@@ -340,47 +291,6 @@
         }
         return false;
       }
-
-      /**
-       * showRipple gives material design-like ripple effect when buttons are click
-       *
-       * @param  {Object} e - the button element that the event key down or finger down has happen
-       *
-       * @return {Object}   - returns the style attribute of the button element with corresponding css styling related to the ripple effect
-       */
-      showRipple(e) {
-        const ripple = document.createElement('span');
-        const size = this.offsetWidth;
-        const pos = this.getBoundingClientRect();
-
-        // for computation of style top and left using Polymer Gesture implementation
-        const x = e.detail.x - pos.left - size / 2; 
-        const y = e.detail.y - pos.top - size / 2;
-
-        const style =
-          'top:' +
-          y +
-          'px; left: ' +
-          x +
-          'px; height: ' +
-          size +
-          'px; width: ' +
-          size +
-          'px;';
-
-        this.$.rippleContainer.appendChild(ripple);
-        return ripple.setAttribute('style', style);
-      }
-
-      /**
-       * clean up the container for the ripple effect
-       */
-      cleanUp() {
-        while (this.$.rippleContainer.firstChild) {
-          this.$.rippleContainer.removeChild(this.$.rippleContainer.firstChild);
-        }
-      }
-
     }
 
     window.customElements.define(MorphButton.is, MorphButton);
