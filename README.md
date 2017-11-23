@@ -7,6 +7,19 @@ For the information about how to clone the desired repository, running the local
 
 
 ## Demo
+Here is a quick demo of morph button
+
+![alt text](https://user-images.githubusercontent.com/15607784/33154475-7051a06a-cf9d-11e7-91cb-ff761f9a9097.png)
+
+
+  ```html
+
+  <template>
+    <p><morph-button platform="ios" filled big color="green">Button iOS</morph-button></p>
+    <p><morph-button platform="android" filled big color="green">Button Android</morph-button></p>
+  </template>
+
+  ```
 
 ## Attributes
 
