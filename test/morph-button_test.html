@@ -10,6 +10,7 @@
     <script src="../../web-component-tester/browser.js"></script>
 
     <link rel="import" href="/bower_components/morph-shared-colors/morph-shared-colors.html">
+    <link rel="import" href="/bower_components/morph-ripple/morph-ripple.html">
     <link rel="import" href="../morph-button.html">
   </head>
   <body>
@@ -91,33 +92,26 @@
         // testing default Android Buttons properties
         context('Android Default Usual Buttons', function() {
           // declare variable for button in this context only
-          let button;
+          let button, morphRipple, rippleStyle;
 
           // Create a test fixture
           beforeEach(function() {
             // assigning button fixture for this context. This will automatically removed on the teardown phase of this test context
             button = fixture('BasicAndroidFixture');
 
-            // mocking showRipple method of our morph-button
-            stub('morph-button', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
-
+            // getting style our morph-ripple
+            morphRipple = button.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(morphRipple);
           });
 
           it('instantiating the button on android platform with default properties works', function() {
             // testing for default colors and which platform was set in html markup
             expect(button.color).to.be.equal('blue');
             expect(button.innerHTML).to.be.equal('Android');
-            
-            // test for default color which is blue by default and correct string is added
-            let mouseDown = new Event('down');
-            button.dispatchEvent(mouseDown);
-            // button.cleanUp();
-            // Count # of calls to showRipple
-            expect(button.showRipple.callCount).to.be.equal(1);
+          });
+
+          it('should have <morph-ripple> diplay = "block" ', function() {
+            expect(rippleStyle.display).to.be.equal('block');
           });
 
         });
@@ -125,18 +119,15 @@
         // testing default iOS Buttons properties
         context('iOS Default Usual Buttons', function() {
           // declare button variable in this context or scope
-          let button;
+          let button, morphRipple, rippleStyle;
           // create test fixture for iOS buttons
           beforeEach(function() {
             // inistanciatong button for this context
             button = fixture('BasicIosFixture');
 
-            // mocking showRipple method of our morph-button
-            stub('morph-button', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
+            // getting style our morph-ripple
+            morphRipple = button.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(morphRipple);
           });
 
           // test proper platform is shown and that correct default colors are applied
@@ -144,8 +135,10 @@
             // testing for default colors and which platform was set in html markup
             expect(button.color).to.be.equal('blue');
             expect(button.platform).to.be.equal('ios');
-            // test that showRipple is not applied if platform is iOS
-            expect(button.showRipple.callCount).to.be.equal(0);
+          });
+
+          it('Does not apply the <morph-ripple> on ios by giving it diplay=none; ', function () {
+            expect(rippleStyle.display).to.be.equal('none');
           });
         });
 
