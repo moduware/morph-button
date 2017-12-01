@@ -9,8 +9,9 @@ For the information about how to clone the desired repository, running the local
 ## Demo
 Here is a quick demo of morph button
 
-![alt text](https://user-images.githubusercontent.com/15607784/33154475-7051a06a-cf9d-11e7-91cb-ff761f9a9097.png)
-
+<p align="center" >
+  <img src="./demo-images/morph-button-basic-demo.png" alt="morph button demo image" />
+</p>
 
   ```html
 
