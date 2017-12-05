@@ -10,7 +10,7 @@
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
     "morph-shared-styles": "https://github.com/moduware/morph-shared-styles.git#master",
     "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#master",
-    "morph-element": "https://github.com/nexpaq/morph-element.git#develop",
+    "morph-element": "https://github.com/nexpaq/morph-element.git#master",
     "morph-ripple": "https://github.com/moduware/morph-ripple.git#master"
   },
   "devDependencies": {
