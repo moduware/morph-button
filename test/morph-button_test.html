@@ -213,8 +213,10 @@
 
           it('setting a property on the button in the html markup reflects corresponding property', function() {
             // test for setting Rounded attributes works
-            expect(button.hasAttribute('rounded')).to.be.true;  
-            expect(style.borderRadius).to.be.equal(iosBorderRadius);   
+            expect(button.hasAttribute('rounded')).to.be.true;
+            console.log('style.borderRadius', style);
+            
+            expect(style.borderTopLeftRadius).to.be.equal(iosBorderRadius);   
           });
         });
 
