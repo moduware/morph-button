@@ -10,7 +10,11 @@ For the information about how to clone the desired repository, running the local
 Here is a quick demo of morph button
 
 <p align="center" >
-  <img src="./demo-images/morph-button-basic-demo.png" alt="morph button demo image" />
+  <img src="./demo-images/basic-demo.gif" alt="morph button demo image" />
+</p>
+
+<p align="center" >
+  <img src="./demo-images/big-button-demo.gif" alt="morph button demo image" />
 </p>
 
   ```html
