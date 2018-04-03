@@ -190,6 +190,10 @@
       :host([platform="android"][filled]) morph-ripple {
         --ripple-color: white;
       }
+
+      :host([flat]) {
+        border-radius: 0;
+      }
       
     </style>
 
@@ -256,6 +260,13 @@
           
           /** Android specific property */
           raised: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          
+          /** Remove round corners */
+          flat: {
             type: Boolean,
             value: false,
             reflectToAttribute: true

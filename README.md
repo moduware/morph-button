@@ -30,12 +30,13 @@ Here is a quick demo of morph button
 
 |     Custom Attribute    |   Type  |               Description               | Default |
 |:-----------------------:|:-------:|:---------------------------------------:|:-------:|
-|           **`Big`**           | Boolean | Identifies if the button is big.        |  False  |
-|          **`Filled`**         | Boolean | Identifies if the button is filled.     |  False  |
-|          **`Color`**          |  String | Identifies the color of the button      | 'blue'  |
-|   **`Active`**<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
-| **`Rounded`**<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
-| **`Raised`**<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
+|           **`big`**           | Boolean | Identifies if the button is big.        |  False  |
+|          **`filled`**         | Boolean | Identifies if the button is filled.     |  False  |
+|          **`flat`**           | Boolean | Identifies if the button has no rounded corners.     |  False  |
+|          **`color`**          |  String | Identifies the color of the button      | 'blue'  |
+|   **`active`**<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
+| **`rounded`**<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
+| **`raised`**<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
 
 ## Styling
 
