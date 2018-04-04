@@ -191,8 +191,9 @@
         --ripple-color: white;
       }
 
+      /* important is to counter the border-radius on big buttons for android and others */
       :host([flat]) {
-        border-radius: 0;
+        border-radius: 0 !important;
       }
       
     </style>
