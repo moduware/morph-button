@@ -38,6 +38,8 @@ Here is a quick demo of morph button
 | **`rounded`**<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
 | **`raised`**<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
 
+- To use default colors, include `morph-shared-colors` in the `morph-button`
+
 ## Styling
 
 -For Android platform;
