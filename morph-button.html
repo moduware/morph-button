@@ -103,7 +103,8 @@
       }
       
       /* class to be used to make morph-button work with morph-swipeout */
-      :host([platform="ios"].swiper-integration-class) {
+      :host([platform="ios"].swiper-integration-class),
+      :host([platform="android"].swiper-integration-class) {
         height: 100%;
         flex: 1;
       }
