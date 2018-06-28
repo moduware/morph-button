@@ -84,7 +84,6 @@
         box-sizing: border-box;
         color: var(--color);
         cursor: pointer;
-        /* display: block; */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -101,6 +100,12 @@
 
         /* We need to use system font here */
         font-family: inherit;
+      }
+      
+      /* class to be used to make morph-button work with morph-swipeout */
+      :host([platform="ios"].swiper-integration-class) {
+        height: 100%;
+        flex: 1;
       }
 
 /* iOS only styles */
