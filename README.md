@@ -2,6 +2,25 @@
 
 Button that morphs for current mobile OS.
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../morph-shared-colors/morph-shared-colors.html">
+        <link rel="import" href="../morph-shared-styles/morph-shared-styles.html">
+    <link rel="import" href="morph-button.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<morph-button platform="android" filled big color="green">BUTTON ANDROID</morph-button>
+<br>
+<morph-button platform="ios" filled big color="green">BUTTON IOS</morph-button>
+```
+
 ## Getting Started:
 For the information about how to clone the desired repository, running the local server and testing, please refer to this [link](https://github.com/moduware/polymorph-components/blob/master/INFO.md).
 
