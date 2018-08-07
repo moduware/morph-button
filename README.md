@@ -16,9 +16,9 @@ Button that morphs for current mobile OS.
 ```
 -->
 ```html
-<morph-button platform="android" filled big color="green">BUTTON ANDROID</morph-button>
+<morph-button platform="android" filled big color="green">button android</morph-button>
 <br>
-<morph-button platform="ios" filled big color="green">BUTTON IOS</morph-button>
+<morph-button platform="ios" filled big color="green">button ios</morph-button>
 ```
 
 ## Getting Started:
