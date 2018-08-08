@@ -22,7 +22,8 @@ Button that morphs for current mobile OS.
 ```
 
 ## Getting Started:
-For the information about how to clone the desired repository, running the local server and testing, please refer to this [link](https://github.com/moduware/polymorph-components/blob/master/INFO.md).
+For the information about how to clone the desired repository, running the local server and testing, please refer to [morph elements getting started] docs.
+<!-- For the information about how to clone the desired repository, running the local server and testing, please refer to this [link](https://github.com/moduware/polymorph-components/blob/master/INFO.md). -->
 
 
 ## Demo
@@ -79,3 +80,5 @@ Custom property                  | Description                            | Defa
 `--active-color--background`     | Background color of active button      | rgba(0, 122, 255, 0.15)
 `--filled-text-color`            | Text color of the filled button        | white
 `--font-size`                    | Font size of the button                | 14px
+
+[morph elements getting started]: https://github.com/moduware/polymorph-components/blob/master/INFO.md
