@@ -1,4 +1,4 @@
-## &lt;morph-button&gt;
+# morph-button
 
 Button that morphs for current mobile OS.
 
@@ -15,18 +15,19 @@ Button that morphs for current mobile OS.
 </custom-element-demo>
 ```
 -->
+
 ```html
 <morph-button platform="android" filled big color="green">button android</morph-button>
 <br>
 <morph-button platform="ios" filled big color="green">button ios</morph-button>
 ```
 
-## Getting Started:
-For the information about how to clone the desired repository, running the local server and testing, please refer to [morph elements getting started] docs.
-<!-- For the information about how to clone the desired repository, running the local server and testing, please refer to this [link](https://github.com/moduware/polymorph-components/blob/master/INFO.md). -->
+## Getting Started
 
+For the information about how to clone the desired repository, running the local server and testing, please refer to Polymorph elements getting started docs at the end of this repository.
 
 ## Demo
+
 Here is a quick demo of morph button
 
 <p align="center" >
@@ -81,4 +82,8 @@ Custom property                  | Description                            | Defa
 `--filled-text-color`            | Text color of the filled button        | white
 `--font-size`                    | Font size of the button                | 14px
 
-[morph elements getting started]: https://github.com/moduware/polymorph-components/blob/master/INFO.md
+## Further help
+
+For more information on how to install and run test please go here - [Polymorph elements getting started]
+
+[Polymorph elements getting started]: https://github.com/moduware/polymorph-components/blob/master/INFO.md
