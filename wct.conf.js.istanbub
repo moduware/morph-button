@@ -1,0 +1,22 @@
+module.exports = {
+  plugins: {
+    local: {
+      browsers: ["chrome", "safari"]
+    },
+    istanbub: {
+      thresholds: {
+        global: {
+          statements: 99
+        }
+      },
+      reporters: ["text-summary", "text", "lcov"],
+      include: [
+        "**/*.html"
+      ],
+      exclude: [
+        "/test/",
+        "**/test/*.html"
+      ]
+    }
+  }
+}

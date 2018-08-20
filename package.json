@@ -1,0 +1,29 @@
+{
+  "name": "morph-button",
+  "version": "1.0.0",
+  "description": "button that looks native on ios and android",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "wct-istanbub": "^0.2.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moduware/morph-button.git"
+  },
+  "keywords": [
+    "polymer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moduware/morph-button/issues"
+  },
+  "homepage": "https://github.com/moduware/morph-button#readme"
+}
