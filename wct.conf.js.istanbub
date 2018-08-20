@@ -1,4 +1,5 @@
 module.exports = {
+  expanded: true,
   plugins: {
     local: {
       browsers: ["chrome", "safari"]
@@ -6,7 +7,7 @@ module.exports = {
     istanbub: {
       thresholds: {
         global: {
-          statements: 99
+          statements: 100
         }
       },
       reporters: ["text-summary", "text", "lcov"],
@@ -19,4 +20,4 @@ module.exports = {
       ]
     }
   }
-}
+};
