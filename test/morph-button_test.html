@@ -10,7 +10,6 @@
     <script src="../../web-component-tester/browser.js"></script>
 
     <link rel="import" href="/bower_components/morph-shared-colors/morph-shared-colors.html">
-    <link rel="import" href="/bower_components/morph-ripple/morph-ripple.html">
     <link rel="import" href="../morph-button.html">
   </head>
   <body>
@@ -112,6 +111,12 @@
 
           it('should have <morph-ripple> diplay = "block" ', function() {
             expect(rippleStyle.display).to.be.equal('block');
+          });
+
+          it('should have <morph-ripple> diplay = "block" ', function () {
+            let standardColorUsed = button.checkIfStandardColorUsed('red');
+
+            expect(standardColorUsed).to.be.equal(true);
           });
 
         });
