@@ -10,7 +10,7 @@ module.exports = {
           statements: 100
         }
       },
-      reporters: ["text-summary", "text", "lcov"],
+      reporters: ["text-summary", "text", "lcov", "clover"],
       include: [
         "**/*.html"
       ],
