@@ -8,10 +8,14 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "coverage-badger": "^1.0.1",
+    "istanbul": "^0.4.5",
     "wct-istanbub": "^0.2.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wct",
+    "coverage-badge": "coverage-badger -r coverage/clover.xml -d coverage/",
+    "coverage": "npm test -- --coverage && npm run coverage-badge"
   },
   "repository": {
     "type": "git",
