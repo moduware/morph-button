@@ -1,11 +1,21 @@
-<link rel="import" href="../polymer/lib/utils/debounce.html">
-<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html"> <!-- import needed to use Polymer Gestures Mixin -->
-<link rel="import" href="../morph-shared-styles/morph-shared-styles.html">
-<link rel="import" href="../morph-element/morph-element.html">
-<link rel="import" href="../morph-ripple/morph-ripple.html">
+import '@polymer/morph-element/morph-element.js';
+import '@polymer/morph-ripple/morph-ripple.js';
+import '@polymer/polymer/lib/utils/debounce.js';
+import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="morph-button">
-  <template>
+/**
+ * `morph-button`
+ * Button that morphs for current mobile OS
+ *
+ * @polymer
+ * @customElement
+ * @demo morph-button/demo/index.html
+ */
+class MorphButton extends MorphElement(PolymerElement) {
+  static get template() {
+    return html`
     <style include="morph-shared-styles">
       :host {
         --have-access-to-shared-colors: var(--morph-shared-colors-connected, black);
@@ -208,114 +218,102 @@
       
     </style>
 
-    <a href$="[[link]]" target$="[[target]]" rel$="[[relation]]">
+    <a href\$="[[link]]" target\$="[[target]]" rel\$="[[relation]]">
       <slot></slot>
       <morph-ripple></morph-ripple>
     </a>
-  </template>
+`;
+  }
 
-  <script>
-    /**
-     * `morph-button`
-     * Button that morphs for current mobile OS
-     *
-     * @polymer
-     * @customElement
-     * @appliesMixin MorphElement
-     * @demo morph-button/demo/index.html
-     */
-    class MorphButton extends MorphElement(Polymer.Element) {
-      static get is() { return 'morph-button'; }
-      static get properties() {
-        return {
-          /** Common for both platforms */
-          big: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
+  static get is() { return 'morph-button'; }
+  static get properties() {
+    return {
+      /** Common for both platforms */
+      big: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
 
-          /** Common for both platforms */
-          filled: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
+      /** Common for both platforms */
+      filled: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
 
-          /** Common for both platforms */
-          color: {
-            type: String,
-            value: 'blue', // red, green, blue, gray
-            reflectToAttribute: true,
-            observer: 'colorAssigned'
-          },
+      /** Common for both platforms */
+      color: {
+        type: String,
+        value: 'blue', // red, green, blue, gray
+        reflectToAttribute: true,
+        observer: 'colorAssigned'
+      },
 
-          /** Common for both platforms */
-          link: String,
-          target: String, 
-          relation: String,
+      /** Common for both platforms */
+      link: String,
+      target: String, 
+      relation: String,
 
-          /** iOS specific property */
-          active: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
+      /** iOS specific property */
+      active: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
 
-          /** iOS specific property */
-          rounded: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
-          
-          /** Android specific property */
-          raised: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          },
-          
-          /** Remove round corners */
-          flat: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-          }
-        };
+      /** iOS specific property */
+      rounded: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+      
+      /** Android specific property */
+      raised: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+      
+      /** Remove round corners */
+      flat: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
       }
+    };
+  }
 
-      /**
-       * colorAssigned function will fire a console.warn message depending on wether the standard color red gray and green were used
-       *
-       * @param  {[any]} oldValue old value of color property
-       * @param  {any} newValue new value of color property
-       *
-       * @return {String}          gives a console warn message when shared-colors is not included
-       */
-      colorAssigned(oldValue, newValue) {
-        let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
-        
-        if(this.checkIfStandardColorUsed(oldValue) && sharedColorsNotConnected) {
-          console.warn(`WARNING: You need to include morph-shared-colors if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
-        }
-      }
-
-      /**
-       * checkIfStandardColorUsed checks if standard colors were used
-       *
-       * @param  {String} oldValue - old value of the color property from its observer
-       *
-       * @return {Boolean}          returns true if oldValue is equal to color red, gray or green else returns false
-       */         
-      checkIfStandardColorUsed(oldValue) {
-        if(oldValue == 'red' || oldValue == 'gray' || oldValue == 'green') {
-          return true;
-        }
-        return false;
-      }
+  /**
+   * colorAssigned function will fire a console.warn message depending on wether the standard color red gray and green were used
+   *
+   * @param  {[any]} oldValue old value of color property
+   * @param  {any} newValue new value of color property
+   *
+   * @return {String}          gives a console warn message when shared-colors is not included
+   */
+  colorAssigned(oldValue, newValue) {
+    let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
+    
+    if(this.checkIfStandardColorUsed(oldValue) && sharedColorsNotConnected) {
+      console.warn(`WARNING: You need to include morph-shared-colors if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
     }
+  }
 
-    window.customElements.define(MorphButton.is, MorphButton);
-  </script>
-</dom-module>
+  /**
+   * checkIfStandardColorUsed checks if standard colors were used
+   *
+   * @param  {String} oldValue - old value of the color property from its observer
+   *
+   * @return {Boolean}          returns true if oldValue is equal to color red, gray or green else returns false
+   */
+  checkIfStandardColorUsed(oldValue) {
+    if(oldValue == 'red' || oldValue == 'gray' || oldValue == 'green') {
+      return true;
+    }
+    return false;
+  }
+}
+
+window.customElements.define(MorphButton.is, MorphButton);
