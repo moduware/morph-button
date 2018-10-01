@@ -2,6 +2,9 @@
   "description": "Button that morphs for current mobile OS",
   "name": "@polymer/morph-button",
   "version": "1.0.0",
+  "scripts": {
+    "start": "polymer serve --npm --module-resolution=node"
+  },
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
@@ -16,10 +19,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "morph-element": "https://github.com/moduware/morph-element.git#polymer3",
-    "morph-ripple": "https://github.com/moduware/morph-ripple.git#polymer3",
-    "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#polymer3",
-    "morph-shared-styles": "https://github.com/moduware/morph-shared-styles.git#polymer3"
+    "morph-element": "github:moduware/morph-element#polymer3",
+    "morph-ripple": "github:moduware/morph-ripple#polymer3",
+    "morph-shared-colors": "github:moduware/morph-shared-colors#polymer3",
+    "morph-shared-styles": "github:moduware/morph-shared-styles#polymer3"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",

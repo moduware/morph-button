@@ -1,5 +1,5 @@
-import { MorphElement } from '@polymer/morph-element/morph-element.js';
-import '@polymer/morph-ripple/morph-ripple.js';
+import { MorphElement } from 'morph-element/morph-element.js';
+import 'morph-ripple/morph-ripple.js';
 import '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
