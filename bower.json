@@ -8,10 +8,10 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
-    "morph-shared-styles": "https://github.com/moduware/morph-shared-styles.git#polymer3",
-    "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#polymer3",
-    "morph-element": "https://github.com/moduware/morph-element.git#polymer3",
-    "morph-ripple": "https://github.com/moduware/morph-ripple.git#polymer3"
+    "morph-shared-styles": "https://github.com/moduware/morph-shared-styles.git#master",
+    "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#master",
+    "morph-element": "https://github.com/moduware/morph-element.git#master",
+    "morph-ripple": "https://github.com/moduware/morph-ripple.git#master"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
