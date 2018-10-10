@@ -35,11 +35,11 @@ For the information about how to clone the desired repository, running the local
 Here is a quick demo of morph button
 
 <p align="center" >
-  <img src="./demo-images/basic-demo.gif" alt="morph button demo image" />
+  <img src="https://github.com/moduware/morph-button/blob/master/demo-images/basic-demo.gif?raw=true" alt="morph button demo image" />
 </p>
 
 <p align="center" >
-  <img src="./demo-images/big-button-demo.gif" alt="morph button demo image" />
+  <img src="https://github.com/moduware/morph-button/blob/master/demo-images/big-button-demo.gif?raw=true" alt="morph button demo image" />
 </p>
 
   ```html
