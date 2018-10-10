@@ -1,0 +1,30 @@
+{
+  "description": "Button that morphs for current mobile OS",
+  "name": "@moduware/morph-button",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moduware/morph-button"
+  },
+  "scripts": {
+    "start": "polymer serve --npm --module-resolution=node"
+  },
+  "main": "morph-button.js",
+  "contributors": [
+    "Clint Pijuan <clintp1@gmail.com>",
+    "Alex Chernov <alexusblack@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@moduware/morph-element": "^1.0.0",
+    "@moduware/morph-ripple": "^1.0.0"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
+    "wct-browser-legacy": "^1.0.1",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@moduware/morph-shared-colors": "^1.0.0",
+    "@moduware/morph-shared-styles": "^1.0.0"
+  }
+}

@@ -6,12 +6,11 @@
 
     <title>morph-button test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-
-    <link rel="import" href="../../morph-shared-colors/morph-shared-colors.html">
-    <link rel="import" href="../../morph-ripple/morph-ripple.html">
-    <link rel="import" href="../morph-button.html">
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../node_modules/@moduware/morph-shared-colors/morph-shared-colors.js"></script>
+    <script type="module" src="../node_modules/@moduware/morph-shared-styles/morph-shared-styles.js"></script>
+    <script type="module" src="../morph-button.js"></script>
   </head>
   <body>
 
@@ -81,288 +80,289 @@
       </template>
     </test-fixture>
     
-    <script>
-      describe('morph-button', function() {
-        // declare colors for testing in the whole button testing suite
-        const androidBlue = 'rgb(33, 150, 243)';
-        const iosblueBackground = 'rgb(0, 122, 255)'
-        const white = 'rgb(255, 255, 255)';
-        const iosBorderRadius = '27px';
+    <script type="module">
 
-        // testing default Android Buttons properties
-        context('Android Default Usual Buttons', function() {
-          // declare variable for button in this context only
-          let button, morphRipple, rippleStyle;
+describe('morph-button', function() {
+  // declare colors for testing in the whole button testing suite
+  const androidBlue = 'rgb(33, 150, 243)';
+  const iosblueBackground = 'rgb(0, 122, 255)'
+  const white = 'rgb(255, 255, 255)';
+  const iosBorderRadius = '27px';
 
-          // Create a test fixture
-          beforeEach(function() {
-            // assigning button fixture for this context. This will automatically removed on the teardown phase of this test context
-            button = fixture('BasicAndroidFixture');
+  // testing default Android Buttons properties
+  context('Android Default Usual Buttons', function() {
+    // declare variable for button in this context only
+    let button, morphRipple, rippleStyle;
 
-            // getting style our morph-ripple
-            morphRipple = button.root.querySelector('morph-ripple');
-            rippleStyle = getComputedStyle(morphRipple);
-          });
+    // Create a test fixture
+    beforeEach(function() {
+      // assigning button fixture for this context. This will automatically removed on the teardown phase of this test context
+      button = fixture('BasicAndroidFixture');
 
-          it('instantiating the button on android platform with default properties works', function() {
-            // testing for default colors and which platform was set in html markup
-            expect(button.color).to.be.equal('blue');
-            expect(button.innerHTML).to.be.equal('Android');
-          });
+      // getting style our morph-ripple
+      morphRipple = button.root.querySelector('morph-ripple');
+      rippleStyle = getComputedStyle(morphRipple);
+    });
 
-          it('should have <morph-ripple> diplay = "block" ', function() {
-            expect(rippleStyle.display).to.be.equal('block');
-          });
+    it('instantiating the button on android platform with default properties works', function() {
+      // testing for default colors and which platform was set in html markup
+      expect(button.color).to.be.equal('blue');
+      expect(button.innerHTML).to.be.equal('Android');
+    });
 
-        });
+    it('should have <morph-ripple> diplay = "block" ', function() {
+      expect(rippleStyle.display).to.be.equal('block');
+    });
 
-        // testing default iOS Buttons properties
-        context('iOS Default Usual Buttons', function() {
-          // declare button variable in this context or scope
-          let button, morphRipple, rippleStyle;
-          // create test fixture for iOS buttons
-          beforeEach(function() {
-            // inistanciatong button for this context
-            button = fixture('BasicIosFixture');
+  });
 
-            // getting style our morph-ripple
-            morphRipple = button.root.querySelector('morph-ripple');
-            rippleStyle = getComputedStyle(morphRipple);
-          });
+  // testing default iOS Buttons properties
+  context('iOS Default Usual Buttons', function() {
+    // declare button variable in this context or scope
+    let button, morphRipple, rippleStyle;
+    // create test fixture for iOS buttons
+    beforeEach(function() {
+      // inistanciatong button for this context
+      button = fixture('BasicIosFixture');
 
-          // test proper platform is shown and that correct default colors are applied
-          it('Instantiating the button on iOS platform with default properties works', function() {
-            // testing for default colors and which platform was set in html markup
-            expect(button.color).to.be.equal('blue');
-            expect(button.platform).to.be.equal('ios');
-          });
+      // getting style our morph-ripple
+      morphRipple = button.root.querySelector('morph-ripple');
+      rippleStyle = getComputedStyle(morphRipple);
+    });
 
-          it('Does not apply the <morph-ripple> on ios by giving it diplay=none; ', function () {
-            expect(rippleStyle.display).to.be.equal('none');
-          });
-        });
+    // test proper platform is shown and that correct default colors are applied
+    it('Instantiating the button on iOS platform with default properties works', function() {
+      // testing for default colors and which platform was set in html markup
+      expect(button.color).to.be.equal('blue');
+      expect(button.platform).to.be.equal('ios');
+    });
 
-        //testing Filled buttons and changing property
-        context('Filled Buttons', function() {
-          let button, style;
+    it('Does not apply the <morph-ripple> on ios by giving it diplay=none; ', function () {
+      expect(rippleStyle.display).to.be.equal('none');
+    });
+  });
 
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('FilledProperty');
-            
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+  //testing Filled buttons and changing property
+  context('Filled Buttons', function() {
+    let button, style;
 
-          it('setting a property on the button in the html markup reflects corresponding property', function() {
-            // testing filled property is reflected and correct CSS colors are assigned
-            expect(button.hasAttribute('filled')).to.be.true;
-            expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
-            expect(style.color).to.be.equal(white);  // text color is white
-          });
-        });
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('FilledProperty');
+      
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        //testing Big buttons
-        context('Big Android Buttons', function() {
-          let button, style;
-          
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('AndroidBigProperty');
+    it('setting a property on the button in the html markup reflects corresponding property', function() {
+      // testing filled property is reflected and correct CSS colors are assigned
+      expect(button.hasAttribute('filled')).to.be.true;
+      expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
+      expect(style.color).to.be.equal(white);  // text color is white
+    });
+  });
 
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+  //testing Big buttons
+  context('Big Android Buttons', function() {
+    let button, style;
+    
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('AndroidBigProperty');
 
-          it('setting a property on the Big Android button in the html markup reflects corresponding property and CSS height', function() {
-            // test for setting big attributes works
-            expect(button.hasAttribute('big')).to.be.true; 
-            expect(style.height).to.be.equal('48px');
-          });
-        });
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        // testing Big iOS buttons
-        context('Big iOS Buttons', function() {
-          let button, style;
+    it('setting a property on the Big Android button in the html markup reflects corresponding property and CSS height', function() {
+      // test for setting big attributes works
+      expect(button.hasAttribute('big')).to.be.true; 
+      expect(style.height).to.be.equal('48px');
+    });
+  });
 
-          beforeEach(function() {
-            // cereate button test fixture
-            button = fixture('IosBigProperty');
+  // testing Big iOS buttons
+  context('Big iOS Buttons', function() {
+    let button, style;
 
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+    beforeEach(function() {
+      // cereate button test fixture
+      button = fixture('IosBigProperty');
 
-          it('setting a property on the Big iOS button in the html markup reflects corresponding property and CSS height', function() {
-            expect(button.hasAttribute('big')).to.be.true;
-            expect(style.height).to.be.equal('44px');
-          });
-        });
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        //testing iOS Rounded buttons and changing property
-        context('Rounded iOS Buttons', function() {
-          let button;
+    it('setting a property on the Big iOS button in the html markup reflects corresponding property and CSS height', function() {
+      expect(button.hasAttribute('big')).to.be.true;
+      expect(style.height).to.be.equal('44px');
+    });
+  });
 
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('RoundedProperty');
+  //testing iOS Rounded buttons and changing property
+  context('Rounded iOS Buttons', function() {
+    let button, style;
 
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('RoundedProperty');
 
-          it('setting a property on the button in the html markup reflects corresponding property', function() {
-            // test for setting Rounded attributes works
-            expect(button.hasAttribute('rounded')).to.be.true;
-            expect(style.borderTopLeftRadius).to.be.equal(iosBorderRadius);   
-          });
-        });
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        //testing Android Raised buttons and changing property
-        context('Raised Buttons', function() {
-          let button, style;
+    it('setting a property on the button in the html markup reflects corresponding property', function() {
+      // test for setting Rounded attributes works
+      expect(button.hasAttribute('rounded')).to.be.true;
+      expect(style.borderTopLeftRadius).to.be.equal(iosBorderRadius);   
+    });
+  });
 
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('RaisedProperty');
+  //testing Android Raised buttons and changing property
+  context('Raised Buttons', function() {
+    let button, style;
 
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('RaisedProperty');
 
-          it('setting a property on the button works', function() {
-            // test for adding Raised attributes works
-            expect(button.hasAttribute('raised')).to.be.true;      
-          });
-        });
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        //testing Active buttons and changing property
-        context('Active iOS Buttons', function() {
-          let button, style;
+    it('setting a property on the button works', function() {
+      // test for adding Raised attributes works
+      expect(button.hasAttribute('raised')).to.be.true;      
+    });
+  });
 
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('iosActiveProperty');
+  //testing Active buttons and changing property
+  context('Active iOS Buttons', function() {
+    let button, style;
 
-            // getting actual CSS of button rendered in the shadow DOM for testing purposes
-            style = getComputedStyle(button);
-          });
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('iosActiveProperty');
 
-          it('setting a property on the button works', function() {
-            // test for setting Active attributes works
-            expect(button.hasAttribute('active')).to.be.true;
-            expect(style.backgroundColor).to.be.equal(iosblueBackground);
-            expect(style.color).to.be.equal(white);    
-          });
-        });
+      // getting actual CSS of button rendered in the shadow DOM for testing purposes
+      style = getComputedStyle(button);
+    });
 
-        //testing Link buttons and changing property
-        context('Link Buttons', function() {
-          let button;
+    it('setting a property on the button works', function() {
+      // test for setting Active attributes works
+      expect(button.hasAttribute('active')).to.be.true;
+      expect(style.backgroundColor).to.be.equal(iosblueBackground);
+      expect(style.color).to.be.equal(white);    
+    });
+  });
 
-          beforeEach(function() {
-            // Create a test fixture
-            button = fixture('LinkProperty');
-          });
+  //testing Link buttons and changing property
+  context('Link Buttons', function() {
+    let button;
 
-          it('setting a property on the button works', function() {
-            // test for adding Link attributes works
-            expect(button.hasAttribute('link')).to.be.true;
-            expect(button.link).to.be.equal('www.google.com');    
-          });
-        });
+    beforeEach(function() {
+      // Create a test fixture
+      button = fixture('LinkProperty');
+    });
 
-        context('Button on load', function() {
-          let button;
+    it('setting a property on the button works', function() {
+      // test for adding Link attributes works
+      expect(button.hasAttribute('link')).to.be.true;
+      expect(button.link).to.be.equal('www.google.com');    
+    });
+  });
 
-          beforeEach(function() {
-            // stubbing the colorAssigned so we can check if it is being run on load
-            stub('morph-button', {
-              colorAssigned: function() {
-                console.log('colorAssigned was called.')
-              }
-            });
-            
-            // assigning to button var the consoleWarningsGreenColor fixture
-            button = fixture('consoleWarningsGreenColor');
-          });
+  context('Button on load', function() {
+    let button;
 
-          it('calls the colorAssigned method once for each element', function(){
-            expect(button.colorAssigned.callCount).to.be.equal(1);
-          });
-        });
-
-
-        context('On load - standard colors used and shared color file not detected', function() {
-          let button, logger, message, spy;
-
-          beforeEach(function() {
-            // we will spy on console.warn everytime it is called we can checked for what message it displayed or called with
-            // or how many times console.warn was called etc.
-            logger = sinon.spy(console, 'warn');
-
-            // the console.warn message that we expect to see displayed
-            message = 'WARNING: You need to include morph-shared-colors if you want to use standard colors like green in the color attribute of morph-button.';
-
-            // stubbing the checkIfStandardColorUsed and checkIfSharedStylesConnected so we can test the colorAssigned is working properly
-            stub('morph-button', {
-              // mock checkIfStandardColorUsed to be true simulate standard colors are used
-              checkIfStandardColorUsed: function() {
-                return true;
-              },
-              // mock checkIfSharedStylesConnected to return false meaning shared color file is not detected
-              checkIfSharedStylesConnected: function() {
-                return false;
-              }
-            });
-            
-            button = fixture('consoleWarningsGreenColor');
-          });
-
-          // destroy logger spy created after the test
-          afterEach(function() {
-            logger.restore();
-          });
-
-          it('calls the colorAssigned method once for each element', function(){
-            expect(button.checkIfStandardColorUsed()).to.be.true;
-            expect(button.checkIfSharedStylesConnected()).to.be.false;
-            expect(logger.callCount).to.be.equal(1);
-            expect(logger).to.have.been.calledWith(message);
-          });
-        });
-
-        context('On load - and standard colors are NOT used', function() {
-          let button, logger;
-          
-          beforeEach(function() {
-            button = fixture('buttonDefaultColor');
-
-            stub('morph-button', {
-              // mock checkIfStandardColorUsed to be false meaning standard colors not used
-              checkIfStandardColorUsed: function() {
-                return false;
-              }
-            });
-            // spy on console.warn
-            logger = sinon.spy(console, 'warn');
-          });
-
-          // destroy the logger spy created above after test
-          afterEach(function() {
-            logger.restore();
-          });
-          
-          it('should not diplay the console.warn message', function() {
-            // test that console.warn is not called by checking our spy logger callCount
-            expect(logger.callCount).to.be.equal(0);
-          });
-
-        });
-
-
+    beforeEach(function() {
+      // stubbing the colorAssigned so we can check if it is being run on load
+      stub('morph-button', {
+        colorAssigned: function() {
+          console.log('colorAssigned was called.')
+        }
       });
-    </script>
+      
+      // assigning to button var the consoleWarningsGreenColor fixture
+      button = fixture('consoleWarningsGreenColor');
+    });
+
+    it('calls the colorAssigned method once for each element', function(){
+      expect(button.colorAssigned.callCount).to.be.equal(1);
+    });
+  });
+
+
+  context('On load - standard colors used and shared color file not detected', function() {
+    let button, logger, message, spy;
+
+    beforeEach(function() {
+      // we will spy on console.warn everytime it is called we can checked for what message it displayed or called with
+      // or how many times console.warn was called etc.
+      logger = sinon.spy(console, 'warn');
+
+      // the console.warn message that we expect to see displayed
+      message = 'WARNING: You need to include morph-shared-colors if you want to use standard colors like green in the color attribute of morph-button.';
+
+      // stubbing the checkIfStandardColorUsed and checkIfSharedStylesConnected so we can test the colorAssigned is working properly
+      stub('morph-button', {
+        // mock checkIfStandardColorUsed to be true simulate standard colors are used
+        checkIfStandardColorUsed: function() {
+          return true;
+        },
+        // mock checkIfSharedStylesConnected to return false meaning shared color file is not detected
+        checkIfSharedStylesConnected: function() {
+          return false;
+        }
+      });
+      
+      button = fixture('consoleWarningsGreenColor');
+    });
+
+    // destroy logger spy created after the test
+    afterEach(function() {
+      logger.restore();
+    });
+
+    it('calls the colorAssigned method once for each element', function(){
+      expect(button.checkIfStandardColorUsed()).to.be.true;
+      expect(button.checkIfSharedStylesConnected()).to.be.false;
+      expect(logger.callCount).to.be.equal(1);
+      expect(logger).to.have.been.calledWith(message);
+    });
+  });
+
+  context('On load - and standard colors are NOT used', function() {
+    let button, logger;
+    
+    beforeEach(function() {
+      button = fixture('buttonDefaultColor');
+
+      stub('morph-button', {
+        // mock checkIfStandardColorUsed to be false meaning standard colors not used
+        checkIfStandardColorUsed: function() {
+          return false;
+        }
+      });
+      // spy on console.warn
+      logger = sinon.spy(console, 'warn');
+    });
+
+    // destroy the logger spy created above after test
+    afterEach(function() {
+      logger.restore();
+    });
+    
+    it('should not diplay the console.warn message', function() {
+      // test that console.warn is not called by checking our spy logger callCount
+      expect(logger.callCount).to.be.equal(0);
+    });
+
+  });
+
+
+});
+</script>
 
   </body>
 </html>
