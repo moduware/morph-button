@@ -360,6 +360,19 @@ describe('morph-button', function() {
 
   });
 
+  context('Test checkIfStandardColorUsed with values "red" passed', () => {
+    let button;
+
+    beforeEach(function () {
+      button = fixture('buttonDefaultColor');
+    });
+
+    it('should return true when passed value "red"', () => {
+      let color = "red";
+      expect(button.checkIfStandardColorUsed(color)).to.be.true;
+    });
+  });
+
 
 });
 </script>
