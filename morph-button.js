@@ -22,7 +22,7 @@ class MorphButton extends MorphElement(PolymerElement) {
       }
 
       /* if iOS assigning colors from iOS colors table */
-      :host([platform="ios"]) {
+      .container[platform="ios"] {
         /* default blue ios colors added here and don't need shared color file to work */
         --polymorph-ios-blue-color: #007aff;
         --polymorph-ios-blue-color--background: rgba(0, 122, 255, 0.15);
@@ -41,7 +41,7 @@ class MorphButton extends MorphElement(PolymerElement) {
       }
 
       /* if Android assigning colors from Android colors table */
-      :host([platform="android"]) {
+      .container[platform="android"] {
         /* default blue android colors added here to make it work without shared colors file */
         --polymorph-android-blue-color: #2196f3;
         --polymorph-android-blue-color--background: #0D82DF;
@@ -63,7 +63,7 @@ class MorphButton extends MorphElement(PolymerElement) {
       }
 
       /* Shared color configuration */
-      :host {
+      .container {
         --color: var(--blue-color);
         --active-color--background: var(--blue-color--background);
         --filled-text-color: white;
@@ -72,23 +72,23 @@ class MorphButton extends MorphElement(PolymerElement) {
       }
 
       /* Prebuilt colors */
-      :host([color="red"]) {
+      :host([color="red"]) .container {
         --color: var(--red-color);
         --active-color--background: var(--red-color--background);
       }
 
-      :host([color="green"]) {
+      :host([color="green"]) .container {
         --color: var(--green-color);
         --active-color--background: var(--green-color--background);
       }
 
-      :host([color="gray"]) {
+      :host([color="gray"]) .container {
         --color: var(--gray-color);
         --active-color--background: var(--gray-color--background);
       }
 
       /* Shared styles between platforms */
-      :host {
+      .container {
         appearance: none;
         background: none;
         box-sizing: border-box;
@@ -113,14 +113,14 @@ class MorphButton extends MorphElement(PolymerElement) {
       }
       
       /* class to be used to make morph-button work with morph-swipeout */
-      :host([platform="ios"].swiper-integration-class),
-      :host([platform="android"].swiper-integration-class) {
+      :host(.swiper-integration-class) .container[platform="ios"],
+      :host(.swiper-integration-class) .container[platform="android"] {
         height: 100%;
         flex: 1;
       }
 
 /* iOS only styles */
-      :host([platform="ios"]) {
+      .container[platform="ios"] {
         border-radius: 5px;
         border: 1px solid var(--color);
         cursor: pointer;
@@ -130,37 +130,37 @@ class MorphButton extends MorphElement(PolymerElement) {
         position: relative;
       }
 
-      :host([platform="ios"]:active) {
+      :host(:active) .container[platform="ios"] {
         background: var(--active-color--background);
       } 
 
-      :host([platform="ios"][active]) {
+      :host([active]) .container[platform="ios"] {
         background: var(--color);
         color: var(--filled-text-color);
       }
 
-      :host([platform="ios"][rounded]) {
+      :host([rounded]) .container[platform="ios"] {
         border-radius: 27px 27px 27px 27px;
       }
 
-      :host([platform="ios"][big]) {
+      :host([big]) .container[platform="ios"] {
         font-size: 17px;
         height: 44px;
         line-height: 42px;
       }
 
-      :host([platform="ios"][filled]) {
+      :host([filled]) .container[platform="ios"] {
         background: var(--color);
         color: var(--filled-text-color);
         border-color: transparent;
       }
 
-      :host([platform="ios"][filled]:active) {
+      :host([filled]:active) .container[platform="ios"] {
         opacity: 0.8;
       }
 
 /* Android only styles */
-      :host([platform="android"]) {
+      .container[platform="android"] {
         border-radius: 2px;
         height: 36px;
         line-height: 36px;
@@ -171,57 +171,58 @@ class MorphButton extends MorphElement(PolymerElement) {
         transition: 300ms;
       }
 
-      :host([platform="android"]:active) {
+      :host(:active) .container[platform="android"] {
         background: rgba(0, 0, 0, 0.1);
       } 
 
-      :host([platform="android"][big]) {
+      :host([big]) .container[platform="android"] {
         height: 48px;
         line-height: 48px;
         border-radius: 3px;
       }
 
-      :host([platform="android"][filled]) {
+      :host([filled]) .container[platform="android"] {
         --android-filled-background-color: var(--color);
         background-color: var(--android-filled-background-color);
         color: var(--filled-text-color);
       }
       
-      :host([platform="android"][filled]:active) {
+      :host([filled]:active) .container[platform="android"] {
         background: var(--active-color--background);
       }
 
-      :host([platform="android"][raised]) {
+      :host([raised]) .container[platform="android"] {
         box-shadow: var(--android-raised-1-shadow);
       }
 
-      :host([platform="android"][raised]:active) {
+      :host([raised]:active) .container[platform="android"] {
         box-shadow: var(--android-raised-2-shadow);
       }
 
-      :host(:not([platform="android"])) morph-ripple {
+      .container:not([platform="android"]) morph-ripple {
         display: none;
       }
 
-      :host([platform="android"]) morph-ripple {
+      .container[platform="android"] morph-ripple {
         --ripple-color: var(--color);
       }
 
-      :host([platform="android"][filled]) morph-ripple {
+      :host([filled]) .container[platform="android"] morph-ripple {
         --ripple-color: white;
       }
 
       /* important is to counter the border-radius on big buttons for android and others */
-      :host([flat]) {
+      :host([flat]) .container {
         border-radius: 0 !important;
       }
       
     </style>
-
-    <a href\$="[[link]]" target\$="[[target]]" rel\$="[[relation]]">
-      <slot></slot>
-      <morph-ripple></morph-ripple>
-    </a>
+    <span class="container" platform\$="[[platform]]">
+      <a href\$="[[link]]" target\$="[[target]]" rel\$="[[relation]]">
+        <slot></slot>
+        <morph-ripple></morph-ripple>
+      </a>
+    </span>
 `;
   }
 
