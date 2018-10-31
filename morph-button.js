@@ -1,7 +1,5 @@
 import { MorphElement } from '@moduware/morph-element/morph-element.js';
 import '@moduware/morph-ripple/morph-ripple.js';
-import '@polymer/polymer/lib/utils/debounce.js';
-import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
