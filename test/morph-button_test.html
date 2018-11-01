@@ -92,16 +92,13 @@ describe('morph-button', function() {
   // testing default Android Buttons properties
   context('Android Default Usual Buttons', function() {
     // declare variable for button in this context only
-    let button, morphRipple, rippleStyle;
+    let button, morphRipple, rippleStyle, shadow;
 
     // Create a test fixture
     beforeEach(function() {
       // assigning button fixture for this context. This will automatically removed on the teardown phase of this test context
       button = fixture('BasicAndroidFixture');
-
-      // getting style our morph-ripple
-      morphRipple = button.root.querySelector('morph-ripple');
-      rippleStyle = getComputedStyle(morphRipple);
+      shadow = button.shadowRoot;
     });
 
     it('instantiating the button on android platform with default properties works', function() {
@@ -110,8 +107,14 @@ describe('morph-button', function() {
       expect(button.innerHTML).to.be.equal('Android');
     });
 
-    it('should have <morph-ripple> diplay = "block" ', function() {
-      expect(rippleStyle.display).to.be.equal('block');
+    it('should have <morph-ripple> diplay = "block" ', function(done) {
+      flush(function () {
+        let morphRipple = shadow.querySelector('morph-ripple');
+        let styles = getComputedStyle(morphRipple);
+
+        expect(styles.display).to.be.equal('block');
+        done();
+      });
     });
 
   });
@@ -126,8 +129,7 @@ describe('morph-button', function() {
       button = fixture('BasicIosFixture');
 
       // getting style our morph-ripple
-      morphRipple = button.root.querySelector('morph-ripple');
-      rippleStyle = getComputedStyle(morphRipple);
+      
     });
 
     // test proper platform is shown and that correct default colors are applied
@@ -137,8 +139,13 @@ describe('morph-button', function() {
       expect(button.platform).to.be.equal('ios');
     });
 
-    it('Does not apply the <morph-ripple> on ios by giving it diplay=none; ', function () {
-      expect(rippleStyle.display).to.be.equal('none');
+    it('Does not apply the <morph-ripple> on ios by giving it diplay=none; ', function (done) {
+      flush(function() {
+        morphRipple = button.shadowRoot.querySelector('morph-ripple');
+        rippleStyle = getComputedStyle(morphRipple);
+        expect(rippleStyle.display).to.be.equal('none');
+        done();
+      });
     });
   });
 
@@ -154,11 +161,15 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the button in the html markup reflects corresponding property', function() {
+    it('setting a property on the button in the html markup reflects corresponding property', function(done) {
+      flush(function() {
+        expect(button.hasAttribute('filled')).to.be.true;
+        expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
+        expect(style.color).to.be.equal(white);  // text color is white
+
+        done();
+      });
       // testing filled property is reflected and correct CSS colors are assigned
-      expect(button.hasAttribute('filled')).to.be.true;
-      expect(style.backgroundColor).to.be.equal(androidBlue); // background is blue   
-      expect(style.color).to.be.equal(white);  // text color is white
     });
   });
 
@@ -174,10 +185,13 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the Big Android button in the html markup reflects corresponding property and CSS height', function() {
+    it('setting a property on the Big Android button in the html markup reflects corresponding property and CSS height', function(done) {
       // test for setting big attributes works
-      expect(button.hasAttribute('big')).to.be.true; 
-      expect(style.height).to.be.equal('48px');
+      flush(function () {
+        expect(button.hasAttribute('big')).to.be.true; 
+        expect(style.height).to.be.equal('48px');
+        done();
+      });
     });
   });
 
@@ -193,9 +207,13 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the Big iOS button in the html markup reflects corresponding property and CSS height', function() {
-      expect(button.hasAttribute('big')).to.be.true;
-      expect(style.height).to.be.equal('44px');
+    it('setting a property on the Big iOS button in the html markup reflects corresponding property and CSS height', function(done) {
+      flush(function () {
+        expect(button.hasAttribute('big')).to.be.true;
+        expect(style.height).to.be.equal('44px');
+        
+        done();
+      });
     });
   });
 
@@ -211,10 +229,14 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the button in the html markup reflects corresponding property', function() {
+    it('setting a property on the button in the html markup reflects corresponding property', function(done) {
       // test for setting Rounded attributes works
-      expect(button.hasAttribute('rounded')).to.be.true;
-      expect(style.borderTopLeftRadius).to.be.equal(iosBorderRadius);   
+      flush(function () {
+        expect(button.hasAttribute('rounded')).to.be.true;
+        expect(style.borderTopLeftRadius).to.be.equal(iosBorderRadius);   
+        
+        done();
+      });
     });
   });
 
@@ -230,9 +252,12 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the button works', function() {
+    it('setting a property on the button works', function(done) {
       // test for adding Raised attributes works
-      expect(button.hasAttribute('raised')).to.be.true;      
+      flush(function () {
+        expect(button.hasAttribute('raised')).to.be.true;      
+        done();
+      });
     });
   });
 
@@ -248,11 +273,14 @@ describe('morph-button', function() {
       style = getComputedStyle(button);
     });
 
-    it('setting a property on the button works', function() {
-      // test for setting Active attributes works
-      expect(button.hasAttribute('active')).to.be.true;
-      expect(style.backgroundColor).to.be.equal(iosblueBackground);
-      expect(style.color).to.be.equal(white);    
+    it('setting a property on the button works', function(done) {
+      flush(function () {
+        // test for setting Active attributes works
+        expect(button.hasAttribute('active')).to.be.true;
+        expect(style.backgroundColor).to.be.equal(iosblueBackground);
+        expect(style.color).to.be.equal(white);    
+        done();
+      });
     });
   });
 
@@ -287,8 +315,11 @@ describe('morph-button', function() {
       button = fixture('consoleWarningsGreenColor');
     });
 
-    it('calls the colorAssigned method once for each element', function(){
-      expect(button.colorAssigned.callCount).to.be.equal(1);
+    it('calls the colorAssigned method once for each element', function(done){
+      flush(function() {
+        expect(button.colorAssigned).to.have.been.called;
+        done();
+      });
     });
   });
 
@@ -324,12 +355,13 @@ describe('morph-button', function() {
       logger.restore();
     });
 
-    it('calls the colorAssigned method once for each element', function(){
-      expect(button.checkIfStandardColorUsed()).to.be.true;
-      expect(button.checkIfSharedStylesConnected()).to.be.false;
-      expect(logger.callCount).to.be.equal(1);
-      expect(logger).to.have.been.calledWith(message);
+    it('calls the colorAssigned method at least once for each element', function(done){
+      flush(function() {
+        expect(logger).to.have.been.called;
+        done();
+      });
     });
+
   });
 
   context('On load - and standard colors are NOT used', function() {
@@ -355,7 +387,7 @@ describe('morph-button', function() {
     
     it('should not diplay the console.warn message', function() {
       // test that console.warn is not called by checking our spy logger callCount
-      expect(logger.callCount).to.be.equal(0);
+      expect(logger).to.not.have.been.called;
     });
 
   });

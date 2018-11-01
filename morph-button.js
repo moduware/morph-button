@@ -1,18 +1,21 @@
-import { MorphElement } from '@moduware/morph-element/morph-element.js';
+// import { MorphElement } from '@moduware/morph-element/morph-element.js';
+// import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+
+import { LitElement, html } from '@polymer/lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { getPlatform } from '/src/morph-element.js';
 
 /**
  * `morph-button`
  * Button that morphs for current mobile OS
  *
- * @polymer
  * @customElement
+ * @extends HTMLElement
  * @demo morph-button/demo/index.html
  */
-class MorphButton extends MorphElement(PolymerElement) {
-  static get template() {
+class MorphButton extends LitElement {
+  render() {
     return html`
     <style include="morph-shared-styles">
       :host {
@@ -226,26 +229,27 @@ class MorphButton extends MorphElement(PolymerElement) {
   static get is() { return 'morph-button'; }
   static get properties() {
     return {
+
+      platform: { String },
       /** Common for both platforms */
       big: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflect: true
       },
 
       /** Common for both platforms */
       filled: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflect: true
       },
 
       /** Common for both platforms */
       color: {
         type: String,
-        value: 'blue', // red, green, blue, gray
-        reflectToAttribute: true,
-        observer: 'colorAssigned'
+        reflect: true,
+        hasChanged: (value, oldValue) => value !== oldValue
       },
 
       /** Common for both platforms */
@@ -257,7 +261,7 @@ class MorphButton extends MorphElement(PolymerElement) {
       active: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflect: true
       },
 
       /** iOS specific property */
@@ -278,9 +282,25 @@ class MorphButton extends MorphElement(PolymerElement) {
       flat: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true
+        reflect: true
       }
     };
+  }
+
+  constructor() {
+    super();
+    this.color = 'blue';
+    this.platform = this.platform || getPlatform();
+  }
+
+  updated(changedProperties) {
+    if(this.color) {
+      this.colorAssigned(this.color);
+    }
+  }
+  
+  connectedCallback() {
+    super.connectedCallback();
   }
 
   /**
@@ -291,11 +311,11 @@ class MorphButton extends MorphElement(PolymerElement) {
    *
    * @return {String}          gives a console warn message when shared-colors is not included
    */
-  colorAssigned(oldValue, newValue) {
+  colorAssigned(value) {
     let sharedColorsNotConnected = !this.checkIfSharedStylesConnected();
     
-    if(this.checkIfStandardColorUsed(oldValue) && sharedColorsNotConnected) {
-      console.warn(`WARNING: You need to include morph-shared-colors if you want to use standard colors like ${oldValue} in the color attribute of morph-button.`);
+    if (this.checkIfStandardColorUsed(value) && sharedColorsNotConnected) {
+      console.warn(`WARNING: You need to include morph-shared-colors if you want to use standard colors like ${value} in the color attribute of morph-button.`);
     }
   }
 
@@ -311,6 +331,32 @@ class MorphButton extends MorphElement(PolymerElement) {
       return true;
     }
     return false;
+  }
+
+  /**
+    * checkIfSharedStylesConnected
+    *
+    * @return {Boolean} - return true if style not equal to 'deepskyblue' meaning shared color file not connected and returns false otherwise
+    */
+  checkIfSharedStylesConnected() {
+    let styleIncludedColor = this.getStyleShadyOrDOM();
+    styleIncludedColor = styleIncludedColor.replace(/\s+/, '');
+    if (styleIncludedColor != 'deepskyblue') {
+      console.warn('WARNING: You need to include morph-shared-colors if you want to use standard colors!');
+      return false;
+    }
+    return true;
+  }
+
+  /**
+    * @return {Object} - returns the computed style based on if ShadyCSS is used or not 
+    */
+  getStyleShadyOrDOM() {
+    if (typeof (ShadyCSS) != 'undefined') {
+      return ShadyCSS.getComputedStyleValue(this, '--have-access-to-shared-colors');
+    } else {
+      return getComputedStyle(this).getPropertyValue('--have-access-to-shared-colors');
+    }
   }
 }
 
