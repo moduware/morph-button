@@ -230,7 +230,10 @@ class MorphButton extends LitElement {
   static get properties() {
     return {
 
-      platform: { String },
+      platform: { 
+        type: String,
+        reflect: true
+      },
       /** Common for both platforms */
       big: {
         type: Boolean,
@@ -290,7 +293,17 @@ class MorphButton extends LitElement {
   constructor() {
     super();
     this.color = 'blue';
-    this.platform = this.platform || getPlatform();
+  }
+  
+  /**
+   * lit-element lifecycle called once before the first updated().
+   */
+  firstUpdated() {
+    super.firstUpdated();
+    // check first if platform assigned in html markup before using getPlatform to auto detect platform
+    if(!this.hasAttribute('platform')) {
+      this.platform = getPlatform();
+    }
   }
 
   updated(changedProperties) {
