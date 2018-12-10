@@ -1,10 +1,6 @@
-// import { MorphElement } from '@moduware/morph-element/morph-element.js';
-// import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-
 import { LitElement, html } from '@polymer/lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
-// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { getPlatform } from '/src/morph-element.js';
+import { getPlatform } from '@moduware/lit-utils';
 
 /**
  * `morph-button`
@@ -120,7 +116,7 @@ class MorphButton extends LitElement {
         flex: 1;
       }
 
-/* iOS only styles */
+      /* iOS only styles */
       :host([platform="ios"]) {
         border-radius: 5px;
         border: 1px solid var(--color);
@@ -160,7 +156,7 @@ class MorphButton extends LitElement {
         opacity: 0.8;
       }
 
-/* Android only styles */
+      /* Android only styles */
       :host([platform="android"]) {
         border-radius: 2px;
         height: 36px;
@@ -223,7 +219,7 @@ class MorphButton extends LitElement {
       <slot></slot>
       <morph-ripple></morph-ripple>
     </a>
-`;
+    `;
   }
 
   static get is() { return 'morph-button'; }
