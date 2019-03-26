@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/paper-progress)
 
-Button that looks native and morphs automatically for current mobile OS whether IOS or Android.
+A lighting fast custom web component button made with LitElement base class that looks native and morphs automatically depending on current auto-detected mobile OS whether IOS or Android.
 
 Morph Components are now changing from polymer base class to lit-element base class. Most of the components `master` branch are now using lit-element. Most of the publish Morph Components on the npm registry are also using lit-element as base class.
 
