@@ -64,6 +64,7 @@ Here is a quick demo of morph button
 |   **`active`**<br> <sub>IOS only</sub>   | Boolean | Shows if the button is in active state. |  False  |
 | **`rounded`**<br> <sub>IOS only</sub>  | Boolean | Identifies if the button is rounded.    |  False  |
 | **`raised`**<br> <sub>Android only</sub> | Boolean | Identifies if the button is raised.     |  False  |
+| **`disabled`**<br> <sub>Android only</sub> | Boolean | Identifies if the button is disabled.     |  False  |
 
 - To use default colors, include `morph-shared-colors` in the `morph-button`
 

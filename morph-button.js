@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
-import { getPlatform } from '@moduware/lit-utils';
+import { getPlatform } from '@moduware/lit-utils'; 
+import { ifDefined } from 'lit-html/directives/if-defined.js';
 
 /**
  * `morph-button`
@@ -84,7 +85,22 @@ class MorphButton extends LitElement {
           --color: var(--gray-color);
           --active-color--background: var(--gray-color--background);
         }
-      
+
+        :host([platform="ios"][disabled]) ,
+        :host([platform="android"][disabled]) {
+          opacity: 0.65;
+          cursor: default;
+          pointer-events: none;
+          /* NOTE: add css variable to style this from light DOM */
+          /* color: #333; */
+          background-color: #E6E6E6;
+        }
+
+        :host a.button {
+          text-decoration: none;
+          color: inherit;
+        }
+
         /* Shared styles between platforms */
         :host {
           appearance: none;
@@ -221,7 +237,7 @@ class MorphButton extends LitElement {
 
   render() {
     return html`
-      <a href\$="[[link]]" target\$="[[target]]" rel\$="[[relation]]">
+      <a class="button" href="${ifDefined(this.link)}">
         <slot></slot>
         <morph-ripple></morph-ripple>
       </a>
@@ -255,6 +271,12 @@ class MorphButton extends LitElement {
         type: String,
         reflect: true,
         hasChanged: (value, oldValue) => value !== oldValue
+      },
+
+      /** Common for both platforms */
+      disabled: {
+        type: Boolean,
+        reflect: true
       },
 
       /** Common for both platforms */
@@ -306,6 +328,7 @@ class MorphButton extends LitElement {
     if(!this.hasAttribute('platform')) {
       this.platform = getPlatform();
     }
+    //NOTE: add default value to flat, raised, rounded, active, disabled, color, filled, big
   }
 
   updated(changedProperties) {

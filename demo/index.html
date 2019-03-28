@@ -48,8 +48,8 @@
         <demo-snippet>
           <template>
 
-            <p><morph-button platform="ios" filled="" big="" color="green">Button iOS</morph-button></p>
-            <p><morph-button platform="android" filled="" big="" color="green">Button Android</morph-button></p>
+            <p><morph-button platform="ios" filled big color="green">Button iOS</morph-button></p>
+            <p><morph-button platform="android" filled big color="green">Button Android</morph-button></p>
             
             
           </template>
@@ -68,7 +68,8 @@
             <morph-button platform="ios" active="">Active Button</morph-button>
 
             <h4>Flat button</h4>
-            <morph-button platform="ios" flat="">Flat Button</morph-button>
+            <p><morph-button platform="ios" flat="">Flat Button</morph-button></p>
+            <p><morph-button platform="ios" flat disabled >Flat Button Disabled</morph-button></p>
 
             <h4>Rounded buttons</h4>
             <p><morph-button platform="ios" rounded="">Rounded Button</morph-button></p>
@@ -77,6 +78,7 @@
 
             <h4>Big buttons</h4>
             <p><morph-button platform="ios" big="">Big Button</morph-button></p>
+            <p><morph-button platform="ios" big disabled >Big Button Disabled</morph-button></p>
             <p><morph-button platform="ios" rounded="" big="">Big Rounded Button</morph-button></p>
             <p><morph-button platform="ios" rounded="" active="" big="">Big Rounded Active Button</morph-button></p>
 
@@ -102,8 +104,8 @@
             <p><morph-button platform="android">Button</morph-button></p>
             
             <h4>Raised Buttons</h4>
-            <p><morph-button platform="android" raised="">Button</morph-button></p>
-            <p><morph-button platform="android" raised="">Button</morph-button></p>
+            <p><morph-button platform="android" raised>Button</morph-button></p>
+            <p><morph-button platform="android" raised>Button</morph-button></p>
 
             <h4>Raised Filled Buttons</h4>
             <p><morph-button platform="android" raised="" filled="">Button</morph-button></p>
@@ -131,6 +133,11 @@
             <p><morph-button platform="android" big="" color="red">Button</morph-button></p>
             <p><morph-button platform="android" big="" filled="" color="green">Button</morph-button></p>
             <p><morph-button platform="android" big="" raised="" filled="" color="gray">Button</morph-button></p>
+
+            <h4>Disabled Buttons</h4>
+            <p><morph-button disabled platform="android" big color="red">Button</morph-button></p>
+            <p><morph-button disabled platform="android" big filled color="green">Button</morph-button></p>
+            <p><morph-button disabled platform="android" big raised filled color="red">Button</morph-button></p>
 
           </template>
         </demo-snippet>
